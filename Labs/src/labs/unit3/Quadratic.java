@@ -12,7 +12,6 @@ public class Quadratic
 	public Quadratic()
 	{
 
-
 	}
 
 	public Quadratic(int quadA, int quadB, int quadC)
@@ -37,14 +36,14 @@ public class Quadratic
 		rootOne /= 2 * a;
 		rootTwo = (double)(-1 * b) + Math.sqrt((Math.pow(b, 2) - 4 * a * c));
 		rootTwo /= 2 * a;
-		System.out.println(rootOne);
+		//System.out.println(rootOne);
 
 	}
 
 	public void print( )
 	{
-		System.out.println(rootOne);
-		System.out.println(rootTwo);
+		System.out.println(String.format("Root one is %.3f", rootOne));
+		System.out.println(String.format("Root two is %.3f", rootTwo));
 
 	}
 }
