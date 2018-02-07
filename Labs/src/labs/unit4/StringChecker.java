@@ -4,47 +4,28 @@
 //Class -
 //Lab  -
 package labs.unit4;
-import static java.lang.System.*;
 
-public class StringChecker
-{
+public class StringChecker {
 	private String word;
-
-	public StringChecker()
-	{
-
-
+	public StringChecker() {}
+	public StringChecker(String s) {
+		word = s;
 	}
-
-	public StringChecker(String s)
-	{
-
-
+	public void setString(String s) {
+		word = s;
 	}
-
-   public void setString(String s)
-   {
-   	word=s;
-   }
-
-	public boolean findLetter(char c)
-	{
-
-
-
+	public boolean findLetter(char c) {
+		return word.indexOf(c) > -1;
+	}
+	public boolean findSubString(String s) {
+		//Satisfys the tip of using an if-statement although a 
+		//simpler way would to be to return word.contains(s)
+		if(word.contains(s)) {
+			return true;
+		}
 		return false;
 	}
-
-	public boolean findSubString(String s)
-	{
-
-
-
-		return false;
-	}
-
- 	public String toString()
- 	{
- 		return "\n\n";
+	public String toString() {
+		return word + "\n\n";
 	}
 }

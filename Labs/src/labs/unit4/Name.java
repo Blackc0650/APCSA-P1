@@ -4,42 +4,25 @@
 //Class -
 //Lab  -
 package labs.unit4;
-import static java.lang.System.*;
 
-public class Name
-{
+public class Name {
 	private String name;
-
-	public Name()
-	{
-
-
+	public Name(){}
+	public Name(String s) {
+		name = s;
 	}
-
-	public Name(String s)
-	{
-
-
-	}
-
-   public void setName(String s)
-   {
-
-
+   public void setName(String s) {
+	   name = s;
+   }
+   public String getFirst() {
+		return name.split(" ")[0];
    }
 
-	public String getFirst()
-	{
-		return "";
-	}
+   public String getLast() {
+	   return name.split(" ")[1];
+   }
 
-	public String getLast()
-	{
-		return "";
-	}
-
- 	public String toString()
- 	{
- 		return "";
-	}
+   public String toString() {
+	   return name;
+   }
 }

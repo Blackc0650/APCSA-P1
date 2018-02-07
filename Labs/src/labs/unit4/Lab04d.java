@@ -5,7 +5,7 @@
 //Lab  -
 package labs.unit4;
 import static java.lang.System.*;
-
+//default constructor should set a string value to ""
 public class Lab04d
 {
 	public static void main ( String[] args )
