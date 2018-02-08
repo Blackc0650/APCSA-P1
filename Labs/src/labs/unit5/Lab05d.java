@@ -16,10 +16,11 @@ public class Lab05d
 		out.print("Enter a letter :: ");
 		char letter = keyboard.next().charAt(0);
 		CharacterAnalyzer test = new CharacterAnalyzer(letter);
-		out.println(test);   //A
-
-		//add more test cases
-		
+		out.println(test);
+		out.println("Enter a number ::");
+		char letterInt = (char) keyboard.nextInt();
+		CharacterAnalyzer test2 = new CharacterAnalyzer(letterInt);
+		out.println(test2);
 		
 		
 		
