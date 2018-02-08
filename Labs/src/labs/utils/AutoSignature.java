@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 
 public class AutoSignature {
 	private Date date = new Date();
-	private final String name = "Cameron Black";
+	private final String name = "Cron Bk";
 	@SuppressWarnings("deprecation")
 	private final String textDate = new DateFormatSymbols().getMonths()[date.getMonth()] + " " + date.getDate() + " " + Calendar.getInstance().get(Calendar.YEAR);
 	private final String className = "Advanced Placement Computer Science A";
