@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;LoopStats&apos; in &apos;labs.unit6.Lab08g.main(...)&apos; to &apos;loopStats&apos;&#x0D;&#x0A;- Original project: &apos;Labs&apos;&#x0D;&#x0A;- Original element: &apos;labs.unit6.Lab08g.main(String[]).LoopStats&apos;&#x0D;&#x0A;- Renamed element: &apos;LoopStats&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;LoopStats&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;labs.unit6{Lab08g.java[Lab08g~main~\[QString;@LoopStats!223!260!233!241!QLoopStats;!0!false" name="loopStats" references="true" stamp="1518107724892" version="1.0"/>
+</session>
