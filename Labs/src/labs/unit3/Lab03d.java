@@ -19,6 +19,6 @@ public class Lab03d
 		Distance distance = new Distance(x1,y1,x2,y2);
 		distance.calcDistance();
 		distance.print();
-		
+		System.out.println(5/2);
 	}
 }

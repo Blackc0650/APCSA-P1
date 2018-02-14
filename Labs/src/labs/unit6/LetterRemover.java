@@ -13,9 +13,14 @@ public class LetterRemover
 
 	public LetterRemover()
 	{
+		sentence = "";
+		lookFor = '0';
 		//call set
 	}
-
+	public LetterRemover(String sentence, char lookFor) {
+		this.sentence = sentence;
+		this.lookFor = lookFor;
+	}
 	//add in second constructor
 	
 	
@@ -28,17 +33,16 @@ public class LetterRemover
 
 	public String removeLetters()
 	{
-		String cleaned=sentence;
-
-
-
-
-
+		String cleaned="";
+		for(char c : sentence.toCharArray()) {
+			if(c != lookFor)
+				cleaned+=c;
+		}
 		return cleaned;
 	}
 
 	public String toString()
 	{
-		return sentence + " - letter to remove " + lookFor;
+		return sentence + " - letter to remove " + lookFor + "\n" + removeLetters() + "\n";
 	}
 }

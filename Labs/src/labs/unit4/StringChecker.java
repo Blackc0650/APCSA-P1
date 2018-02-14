@@ -7,7 +7,7 @@ package labs.unit4;
 
 public class StringChecker {
 	private String word;
-	public StringChecker() {}
+	public StringChecker() {word = "";}
 	public StringChecker(String s) {
 		word = s;
 	}

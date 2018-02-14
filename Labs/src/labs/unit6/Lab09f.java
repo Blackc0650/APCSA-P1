@@ -9,9 +9,12 @@ public class Lab09f
 {
 	public static void main( String args[] )
 	{
-		//add test cases
-		
-		
-											
+		LetterRemover letterRemover = new LetterRemover();
+		letterRemover.setRemover("I am Sam I am", 'a');
+		System.out.println(letterRemover);
+		letterRemover.setRemover("fdnfesfsds", 'f');
+		System.out.println(letterRemover);
+		letterRemover.setRemover("qwertyqwertyqwertyqwerty", 'q');
+		System.out.println(letterRemover);
 	}
 }
