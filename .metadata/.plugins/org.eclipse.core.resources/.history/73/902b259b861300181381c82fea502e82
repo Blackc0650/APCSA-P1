@@ -1,0 +1,113 @@
+//© A+ Computer Science  -  www.apluscompsci.com
+//Name -
+//Date -
+//Class -
+//Lab  -
+package labs.unit8;
+import static java.lang.System.*;
+
+import java.util.ArrayList;
+
+public class RomanNumeral
+{
+	private Integer number;
+	private String roman;
+
+	private final static int[] NUMBERS= {1000,900,500,400,100,90,
+													50,40,10,9,5,4,1};
+
+	private final static String[] LETTERS = {"M","CM","D","CD","C","XC",
+												  "L","XL","X","IX","V","IV","I"};
+
+	public RomanNumeral(String str)
+	{
+		roman = str;
+	}
+
+	public RomanNumeral(Integer orig)
+	{
+		number = orig;
+	}
+
+	public void setNumber(Integer num)
+	{
+		number = num;
+	}
+
+	public void setRoman(String rom)
+	{
+		roman = rom;
+	}
+
+	public Integer getNumber()
+	{
+		return number;
+	}
+
+	public String toString()
+	{
+		//Personal algorithim
+		/*ArrayList<String> letters = new ArrayList<String>();
+		for(String s : LETTERS)
+			letters.add(s);
+		String current = roman;
+		int convert = 0;
+		while(current.length() > 0) {
+			String obtain = null;
+			boolean singular = false;
+			while(obtain == null || obtain.length() > 0) {
+				if(singular == false) {
+					obtain = current.substring(current.length() - 2, current.length());
+					if(letters.contains(obtain)) {
+						convert += NUMBERS[letters.indexOf(obtain)];
+						obtain = "";
+					}
+					singular = true;
+				}
+				else {
+					obtain = current.substring(current.length() - 1, current.length());
+					convert += NUMBERS[letters.indexOf(obtain)];
+					obtain = "";
+				}
+			}
+		}
+		
+		*/
+		//roman to base10;
+		String current = roman;
+		int converted = 0;
+		while(current.length() > 0) {
+			System.out.println("a");
+			for (int i = 0; i < 2; i++) {
+				int index = 0;
+				for(String s : LETTERS) {
+					index++;
+					if(i == 0) {
+						if(s.length() == 2) {
+							if(current.length() > 1) {
+								if(current.substring(current.length() - 2, current.length()).equals(s)) {
+									converted += NUMBERS[index];
+									current = current.substring(0,current.length() - 2);
+								}
+							}
+						}
+					}
+					else {
+						if(s.length() == 1) {
+							if(current.length() != 0) {
+								if(current.substring(current.length() - 1, current.length()).equals(s)) {
+									converted += NUMBERS[index];
+									current = current.substring(0, current.length() - 1);
+								}
+							}
+							else {
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+		return "" + converted;
+	}
+}
