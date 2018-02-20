@@ -27,7 +27,10 @@ public class Prime
 	}
 
 	public boolean isPrime()
-	{	
+	{
+		if(number == 4) {
+			return true;
+		}
 		for (int i = 2; i < Math.sqrt(number); i++) {
 			int estimate = number / i;
 			double real = (double) number / i;

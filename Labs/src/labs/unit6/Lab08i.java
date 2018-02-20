@@ -14,11 +14,27 @@ public class Lab08i
 	{
 		Prime p = new Prime();
 		Scanner sc = new Scanner(System.in);
-		int x = 0;
-		while(x < 5) {
-			p.setPrime(sc.nextInt());
-			System.out.println(p);
-		}
+		System.out.println("Enter a number!");
+		p.setPrime(sc.nextInt());
+		System.out.println(p);
 		sc.close();
+		p.setPrime(24);
+		System.out.println(p);
+		p.setPrime(7);
+		System.out.println(p);
+		p.setPrime(100);
+		System.out.println(p);
+		p.setPrime(113);
+		System.out.println(p);
+		p.setPrime(65535);
+		System.out.println(p);
+		p.setPrime(2);
+		System.out.println(p);
+		p.setPrime(7334);
+		System.out.println(p);
+		p.setPrime(7919);
+		System.out.println(p);
+		p.setPrime(1115125003);
+		System.out.println(p);
 	}	
 }
