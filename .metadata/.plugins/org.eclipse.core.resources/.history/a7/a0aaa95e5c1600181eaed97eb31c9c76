@@ -4,13 +4,8 @@
 //Class -
 //Lab  -
 package labs.unit8;
-/**
- * <b>On the student download editions for this Lab there is
- * no implementation of a Comparable!</b>
- * @author Blackc0650
- *
- */
-public class RomanNumeral
+
+public class RomanNumeral implements Comparable<RomanNumeral>
 {
 	private Integer number;
 	private String roman;
@@ -136,5 +131,11 @@ public class RomanNumeral
 		}
 		
 		return newRoman;
+	}
+
+	@Override
+	public int compareTo(RomanNumeral arg0) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

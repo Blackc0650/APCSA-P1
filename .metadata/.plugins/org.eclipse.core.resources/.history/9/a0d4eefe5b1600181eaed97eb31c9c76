@@ -4,12 +4,7 @@
 //Class -
 //Lab  -
 package labs.unit8;
-/**
- * <b>On the student download editions for this Lab there is
- * no implementation of a Comparable!</b>
- * @author Blackc0650
- *
- */
+
 public class RomanNumeral
 {
 	private Integer number;
@@ -43,10 +38,6 @@ public class RomanNumeral
 
 	public Integer getNumber()
 	{
-		/**
-		 * Algorithm based on the instructions in Lab14i 
-		 * -> If I have extra time I will condense this for conciseness 
-		 */
 		String current = roman;
 		int converted = 0;
 		while(current.length() > 0) {
@@ -116,9 +107,6 @@ public class RomanNumeral
 		
 		*/
 		//roman to base10;
-		/**
-		 * Algorithm based on the instructions in Lab14i!
-		 */
 		int currentNumber = number;
 		String newRoman = "";
 		roman = newRoman;
