@@ -1,3 +1,7 @@
+//Cron Bk
+//February 21 2018
+//Advanced Placement Computer Science A
+//labs.utils.AutoSignature
 package labs.unit9;
 /**
  * This class provides a convenient way to test shuffling methods.

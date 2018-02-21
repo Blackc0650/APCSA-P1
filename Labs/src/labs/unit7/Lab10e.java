@@ -13,15 +13,23 @@ public class Lab10e
 	{
 		GuessingGame guessingGame;
 		Scanner keyboard = new Scanner(System.in);
-		char response;
+		char response = 'y';
 		//TODOwhile(response != 'n') {
 			
 			//TODO guessingGame = new guessingGame();
+		while(response != 'n') {
+			System.out.println("How many nums?");
+			guessingGame = new GuessingGame(keyboard.nextInt());
+			guessingGame.playGame();
+			System.out.println(guessingGame);
+			System.out.println("Do you want to play again");
+			response = (char) keyboard.next().charAt(0);
 		}
-
-
-
-
-
 	}
+
+
+
+
+
+}
 //}

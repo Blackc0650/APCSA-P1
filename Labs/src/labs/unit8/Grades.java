@@ -1,3 +1,7 @@
+//Cameron Black
+//February 21 2018
+//Advanced Placement Computer Science A
+//labs.utils.AutoSignature
 //© A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -

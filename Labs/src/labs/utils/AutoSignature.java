@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,10 +13,12 @@ import java.util.Date;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.xml.bind.DatatypeConverter;
 
 public class AutoSignature {
 	private Date date = new Date();
-	private final String name = "Cron Bk";
+	//TODO: Fix this and the hex converter it does not work correctly
+	private static String name = "43616d65726f6e20426c61636b";
 	@SuppressWarnings("deprecation")
 	private final String textDate = new DateFormatSymbols().getMonths()[date.getMonth()] + " " + date.getDate() + " " + Calendar.getInstance().get(Calendar.YEAR);
 	private final String className = "Advanced Placement Computer Science A";
@@ -23,8 +26,9 @@ public class AutoSignature {
 	private final String[] arrayFormat = {name,textDate,className,lab};
 	private JFileChooser jFileChooser;
 	private static File f;
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnsupportedEncodingException {
 		AutoSignature autoSignature = new AutoSignature();
+		name = new String((byte[])DatatypeConverter.parseHexBinary(name),"UTF-8");
 		try {
 			autoSignature.addComment(f);
 		} catch (IOException e) {

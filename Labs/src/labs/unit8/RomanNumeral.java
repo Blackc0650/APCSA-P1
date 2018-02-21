@@ -88,6 +88,9 @@ public class RomanNumeral
 
 	public String toString()
 	{
+		/**
+		 * This was just for extra practice :P
+		 */
 		//Personal algorithim
 		/*ArrayList<String> letters = new ArrayList<String>();
 		for(String s : LETTERS)
