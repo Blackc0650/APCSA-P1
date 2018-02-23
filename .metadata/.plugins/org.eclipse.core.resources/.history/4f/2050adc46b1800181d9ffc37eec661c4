@@ -1,0 +1,95 @@
+//© A+ Computer Science  -  www.apluscompsci.com
+//Name -
+//Date -
+//Class - 
+//Lab  -
+package labs.unit7;
+
+import java.util.ArrayList;
+
+public class Triples
+{
+   private int number;
+
+	public Triples()
+	{
+		this(0);
+	}
+
+	public Triples(int num)
+	{
+		number = num;
+	}
+
+	public void setNum(int num)
+	{
+		number = num;
+
+	}
+	
+	private int greatestCommonFactor(int a, int b, int c)
+	{
+		return eculids(eculids(a,b),c);
+		
+	}
+	/**
+	 * Used Eculids Binary Algorithm to find the Greatest Common Factor!
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	private int eculids(int a,int b) {
+		int result = 0;
+		while(a % 2 == 0 && b % 2 == 0) {
+			a /= 2; b /= 2; result++;
+		}
+		while(a != b) {
+			if(a % 2 == 0) {
+				a /= 2;
+			}
+			else if(b % 2 == 0) {
+				b /= 2;
+			}
+			else if(a > b) {
+				a = (a-b) / 2;
+			}
+			else {
+				b = (b - a)/2;
+			}
+		}
+		return (int)(a*Math.pow(2, result));
+	}
+	
+	public String toString()
+	{
+		ArrayList<String> pairs = new ArrayList<String>();
+		for (int i = 1; i < number - 2; i++) {
+			int a = i,b = i + 1,c = i + 2;
+			if((a * a) + (b * b) == c * c) {
+				System.out.println(a + " " + b + " " + c);
+				if(c % 2 == 0) {
+					if(a % 2 == 0 && b % 2 != 0) {
+						if(greatestCommonFactor(a, b, c) < 1)
+							pairs.add(a + " " + b + " " + c);
+					}
+					else if(a % 2 != 0 && b % 2 == 0) {
+						if(greatestCommonFactor(a, b, c) < 1)
+							pairs.add(a + " " + b + " " + c);
+					}
+				}
+			}
+				
+		}
+		String output="";
+		for(String s : pairs) {
+			output += s + "\n";
+		}
+
+
+
+
+
+
+		return output+"\n";
+	}
+}

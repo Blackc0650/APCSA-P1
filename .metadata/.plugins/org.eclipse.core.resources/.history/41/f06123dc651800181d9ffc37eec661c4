@@ -1,0 +1,78 @@
+//© A+ Computer Science  -  www.apluscompsci.com
+//Name -
+//Date -
+//Class - 
+//Lab  -
+package labs.unit7;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+public class Triples
+{
+   private int number;
+
+	public Triples()
+	{
+		this(0);
+	}
+
+	public Triples(int num)
+	{
+		number = num;
+	}
+
+	public void setNum(int num)
+	{
+		number = num;
+
+	}
+	
+	public static int greatestCommonFactor(int a, int b, int c)
+	{
+		ArrayList<Integer> aFactors,bFactors,cFactors,mutipl;
+		aFactors = preformWhileArray(a);
+		bFactors = preformWhileArray(b);
+		cFactors = preformWhileArray(c);
+		mutipl = new ArrayList<Integer>();
+		for(int a2 : aFactors) {
+			for(int b2 : bFactors) {
+				for(int c2 : cFactors) {
+					if(a2 == b2 && b2 == c2) {
+						mutipl.add(a2);
+					}
+				}
+			}
+		}
+		int gcf = 1;
+		for(int i : mutipl) {
+			gcf *= i;
+		}
+		return gcf;
+		
+	}
+	public static ArrayList<Integer> preformWhileArray(int i) {
+		int count = i  / 2;
+		ArrayList<Integer> factors = new ArrayList<Integer>();
+		while(count > 0) {
+			if(((double)(i / count)) % 1 == 0) {
+				factors.add(count);
+				System.out.println(count);
+			}
+			count--;
+		}
+		Collections.sort(factors);
+		return factors;
+	}
+
+	public String toString()
+	{
+		String output="";
+
+
+
+
+
+
+		return output+"\n";
+	}
+}

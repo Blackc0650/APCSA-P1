@@ -1,0 +1,107 @@
+//© A+ Computer Science  -  www.apluscompsci.com
+//Name -
+//Date -
+//Class - 
+//Lab  -
+package labs.unit7;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Triples
+{
+   private int number;
+
+	public Triples()
+	{
+		this(0);
+	}
+
+	public Triples(int num)
+	{
+		number = num;
+	}
+
+	public void setNum(int num)
+	{
+		number = num;
+
+	}
+	
+	private int greatestCommonFactor(int a, int b, int c)
+	{
+		return eculids(eculids(a,b),c);
+		
+	}
+	/**
+	 * Used Eculids Binary Algorithm to find the Greatest Common Factor!
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	private int eculids(int a,int b) {
+		int result = 0;
+		while(a % 2 == 0 && b % 2 == 0) {
+			a /= 2; b /= 2; result++;
+		}
+		while(a != b) {
+			if(a % 2 == 0) {
+				a /= 2;
+			}
+			else if(b % 2 == 0) {
+				b /= 2;
+			}
+			else if(a > b) {
+				a = (a-b) / 2;
+			}
+			else {
+				b = (b - a)/2;
+			}
+		}
+		return (int)(a*Math.pow(2, result));
+	}
+	
+	public String toString()
+	{
+		int[] lastPair = new int[3];
+		ArrayList<String> pairs = new ArrayList<String>();
+		for (int a = 1; a <= number; a++) {
+			for (int b = 1; b <= number; b++) {
+				for (int c = 1; c <= number; c++) {
+					if((a * a) + (b * b) == c * c) {
+						if(c % 2 == 1) {
+							if(a % 2 == 1 && b % 2 == 0) {
+								if(greatestCommonFactor(a, b, c) <= 1) {
+									if(c != lastPair[2]) {
+										lastPair[0] = a;
+										lastPair[1] = b;
+										lastPair[2] = c;
+										Arrays.sort(lastPair);
+										pairs.add(lastPair[0] + " " + lastPair[1] + " " + lastPair[2]);
+									}
+								}
+							}
+							else if(a % 2 == 0 && b % 2 == 1) {
+								if(greatestCommonFactor(a, b, c) <= 1) {
+									if(c != lastPair[2]) {
+										lastPair[0] = a;
+										lastPair[1] = b;
+										lastPair[2] = c;
+										Arrays.sort(lastPair);
+										pairs.add(lastPair[0] + " " + lastPair[1] + " " + lastPair[2]);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+				
+		String output="";
+		for(String s : pairs) {
+			output += s + "\n";
+		}
+		return output+"\n";
+	}
+}
