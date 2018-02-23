@@ -12,7 +12,7 @@ public class Deck {
 	/**
 	 * cards contains all the cards in the deck.
 	 */
-	private List<Card> cards;
+	private Card[] cards;
 
 	/**
 	 * size is the number of not-yet-dealt cards.
