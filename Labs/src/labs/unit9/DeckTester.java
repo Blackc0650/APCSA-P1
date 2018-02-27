@@ -10,9 +10,9 @@ public class DeckTester {
 	 */
 	public static void main(String[] args) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		String[] s = {"Clubs","Hearts"};
-		String[] r = {"Jack","1","2"};
-		int[] p = {1,2,3,4,5,6};
+		String[] s = {"Griaffes","Lions"};
+		String[] r = {"A","B","C"};
+		int[] p = {2,1,6};
 		Deck d = new Deck(r,s,p);
 		System.out.println(d);
 		//TODO: FIX!

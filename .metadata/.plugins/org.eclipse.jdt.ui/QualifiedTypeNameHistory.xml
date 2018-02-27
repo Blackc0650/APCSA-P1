@@ -1,14 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="java.util.Scanner"/>
-<fullyQualifiedTypeName name="labs.unit6.LetterRemover"/>
-<fullyQualifiedTypeName name="labs.unit7.TriangleThree"/>
-<fullyQualifiedTypeName name="java.util.Collections"/>
-<<<<<<< HEAD
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
-=======
->>>>>>> origin/master
-</qualifiedTypeNameHistroy>
+<qualifiedTypeNameHistroy/>
