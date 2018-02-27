@@ -23,7 +23,7 @@ public class Lab10e
 			guessingGame.playGame();
 			System.out.println(guessingGame);
 			System.out.println("Do you want to play again");
-			response = keyboard.next().charAt(0);
+			response = (char) keyboard.next().charAt(0);
 		}
 	}
 
