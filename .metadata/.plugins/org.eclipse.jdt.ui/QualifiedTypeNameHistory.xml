@@ -5,7 +5,10 @@
 <fullyQualifiedTypeName name="labs.unit6.LetterRemover"/>
 <fullyQualifiedTypeName name="labs.unit7.TriangleThree"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
+<<<<<<< HEAD
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
+=======
+>>>>>>> origin/master
 </qualifiedTypeNameHistroy>

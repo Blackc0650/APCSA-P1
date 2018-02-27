@@ -7,28 +7,25 @@ package labs.unit7;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Triples
 {
-   private int number;
-
+    private int number;
 	public Triples()
 	{
 		this(0);
 	}
-
 	public Triples(int num)
 	{
 		number = num;
 	}
-
 	public void setNum(int num)
 	{
 		number = num;
-
 	}
-	
 	private int greatestCommonFactor(int a, int b, int c)
 	{
 		return eculids(eculids(a,b),c);
@@ -61,7 +58,6 @@ public class Triples
 		}
 		return (int)(a*Math.pow(2, result));
 	}
-	
 	public String toString()
 	{
 		HashMap<String, String> pairsMap = new HashMap<String,String>();
@@ -101,11 +97,32 @@ public class Triples
 				}
 			}
 		}
-		int[] index = new int[pairsMap.size()];
+		/*
+		 * Iterate over a set used a Iterator instead of for loop for ease
+		 */
+		ArrayList<Integer> indecies = new ArrayList<Integer>();
+		for (Iterator<String> iterator = pairsMap.keySet().iterator(); iterator.hasNext();) {
+			String string = (String) iterator.next();
+			indecies.add(Integer.valueOf(string));
+		}
+		Collections.sort(indecies);
+		ArrayList<String> reordered = new ArrayList<String>();
+		for (int i = 0; i < pairsMap.size(); i++) {
+			reordered.add(pairsMap.get(String.valueOf(indecies.get(i))));
+		}
+		String output="";
+		for(String s : reordered) {
+			output += s + "\n";
+		}
+		return output+"\n";
+		//
+		/**
+		 * Old code
+		 * int[] index = new int[pairsMap.size()];
 		String output="";
 		for(String s : pairs) {
 			output += s + "\n";
 		}
-		return output+"\n";
+		return output+"\n";*/
 	}
 }
