@@ -3,6 +3,9 @@
 //Advanced Placement Computer Science A
 //labs.utils.AutoSignature
 package labs.unit9;
+
+import java.util.Random;
+
 /**
  * This class provides a convenient way to test shuffling methods.
  */
@@ -18,12 +21,14 @@ public class Shuffler {
 	 * The number of values to shuffle.
 	 */
 	private static final int VALUE_COUNT = 4;
+	private static Random random;
 
 	/**
 	 * Tests shuffling methods.
 	 * @param args is not used.
 	 */
 	public static void main(String[] args) {
+		random = new Random();
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive perfect shuffles:");
 		int[] values1 = new int[VALUE_COUNT];
@@ -66,6 +71,22 @@ public class Shuffler {
 	 */
 	public static void perfectShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		int[] shuffled = new int[values.length];
+		int k = 0;
+		for (int i = 0; i < (shuffled.length + 1) / 2; i++) {
+			shuffled[k] = values[i];
+			k+=2;
+		}
+		k = 1;
+		int splitPoint = values.length / 2;
+		for (int i = splitPoint; i < values.length; i++) {
+			shuffled[k] = values[i];
+			k+=2;
+		}
+		//Avoid setting shuffled as a static
+		for (int i = 0; i < values.length; i++){
+			values[i] = shuffled[i];
+		}
 	}
 
 	/**
@@ -81,5 +102,19 @@ public class Shuffler {
 	 */
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		int[] shuffled = new int[values.length];
+		for (int i = 0; i < shuffled.length; i++) {
+			int j = random.nextInt(values.length);
+			while(values[j] == -1) {
+				j = random.nextInt(values.length);
+			}
+			shuffled[i] = values[j];
+			values[j] = -1;
+		}
+		for (int i = 0; i < values.length; i++){
+			values[i] = shuffled[i];
+		}
+		
+		
 	}
 }
