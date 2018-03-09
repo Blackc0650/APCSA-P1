@@ -12,7 +12,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import static java.lang.System.*;
-
+/**
+ * Used a FileReader instead of a Scanner to test new things :)!
+ * @author CameronBlack
+ *
+ */
 public class Histogram
 {
 	private ArrayList<Integer> count;
@@ -21,10 +25,9 @@ public class Histogram
 
 	public Histogram()
 	{
-
-
-
-
+		count = new ArrayList<Integer>();
+		letters = new ArrayList<Character>();
+		fileName = "";
 	}
 
 	public Histogram(char[] values, String fName)
@@ -49,37 +52,38 @@ public class Histogram
 		FileReader fr = new FileReader(f);
 		char next = '\u0000';
 		while((next = (char) fr.read()) < 10000) {
-			System.out.println(next);
-			if(letters.contains(next)) {
-				int index = letters.indexOf(next);
-				System.out.println(count.contains(index) + "" + index);
-				if(count.contains(index)) {
-					count.set(index, count.get(index) + 1);
+			int index = letters.indexOf(next);
+			if(index != -1) {
+				if(count.size() > index) {
+					if(count.get(letters.indexOf(next)) != -1) {
+						count.set(index, count.get(index) + 1);
+					}
 				}
 				else {
-					System.out.println('!');
-					count.add(1);
+					if(count.size() < index) {
+						for (int i = 0; i < letters.size() -1; i++) {
+							count.add(0);
+						}
+					}
+					try{count.add(index, 1);}catch(Exception e){System.out.println(count.size() + "!");};
 				}
 			}
 		}
 		fr.close();		
 	}
-
-	public char leastFrequent()
+	public char mostFrequent()
 	{
 		int[] sort = new int[count.size()];
 		int index = 0;
-		System.out.println(count.size());
 		for(int y : count) {
 			sort[index++] = y;
 		}
 		Arrays.sort(sort);
-		System.out.println(sort.length);
 		int index2 = count.indexOf(sort[sort.length - 1]);
-		return letters.get(index2 - 1);
+		return letters.get(index2);
 	}
 
-	public char mostFrequent()
+	public char leastFrequent()
 	{
 		int[] sort = new int[count.size()];
 		int index = 0;

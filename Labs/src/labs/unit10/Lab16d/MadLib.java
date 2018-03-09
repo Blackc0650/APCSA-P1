@@ -4,11 +4,15 @@
 //Class -
 //Lab  - 
 package labs.unit10.Lab16d;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
+
 import static java.lang.System.*;
 
 public class MadLib
@@ -114,4 +118,15 @@ public class MadLib
 	{
 	   return "\n\n\n";
 	}
+	/*private ArrayList<String> loadFileToArrayList(String type) throws IOException {
+		String path = type;
+		ArrayList<String> arrayData = new ArrayList<String>();
+		BufferedReader br = new BufferedReader(new FileReader(new File(path)));
+		String nextLine;
+		while((nextLine = br.readLine()) != null) {
+			arrayData.add(nextLine);
+		}
+		br.close();
+		return arrayData;
+	}*/
 }
