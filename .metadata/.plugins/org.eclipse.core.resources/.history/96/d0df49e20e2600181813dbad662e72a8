@@ -30,6 +30,7 @@ public class Class {
         double avg = 0;
         for(Student s : studentList) {
         	avg += s.getAverage();
+        	System.out.println(s.getAverage());
         }
         return ((double)avg / studentList.length);
     }
