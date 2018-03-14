@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ClassTester
 {
@@ -42,18 +43,30 @@ public class ClassTester
 		BufferedReader br = new BufferedReader(new FileReader(new File(getSimplePath("gradebook.dat"))));
 		String nextLine;
 		while((nextLine = br.readLine()) != null) {
-			lines.add(nextLine + (nextLine = br.readLine()));
+			lines.add(nextLine);
 		}
+		br.close();
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
-	   
+	   Class test2 = new Class(lines.get(0),Integer.valueOf(lines.get(1)));
+	   int index = 2;
+	   int secondindexx = 0;
+	   while(index <= (lines.size() - 1)) {
+		   Student s = new Student(lines.get(index),lines.get(index + 1));
+		   test2.addStudent(secondindexx++,s);
+		   index+= 2;
+	   }
+	   System.out.println("Failure List: " + test2.getFailureList(69));
+	   System.out.println("High Average: " + test2.getStudentWithHighestAverage());
+	   System.out.println("Low Average: " + test2.getStudentWithLowestAverage());
+	   System.out.println("Class Average: " + test2.getClassAverage());
    }
    private static String getSimplePath(String path) {
-		String outerPath = ClassTester.class.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
+		String outerPath = ClassTester.class.getProtectionDomain().getCodeSource().getLocation().getFile();
 		outerPath = outerPath.substring(0, outerPath.length() - 4);
 		outerPath += "src/";
-		outerPath += ClassTester.class.getClass().getPackage().getName().replace('.', '/');
+		outerPath += ClassTester.class.getPackage().getName().replace('.', '/');
 		return outerPath + "/" + path;
 	}
 }
