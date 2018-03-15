@@ -10,18 +10,18 @@ import java.util.Arrays;
 
 public class Class {
     private String name;
-    private Student[] studentList;
+    private ArrayList<Student> studentList;
 
     public Class() {
         name = "";
-        studentList = new Student[0];
+        studentList = new ArrayList<Student>();
     }
     public Class(String name, int stuCount) {
     	this.name = name;
-    	studentList = new Student[stuCount];
+    	studentList = new ArrayList<Student>();
     }
     public void addStudent(int stuNum, Student s) {
-    	studentList[stuNum] = s;
+    	studentList.add(stuNum, s);
     }
     public String getClassName() {
         return name;
@@ -31,10 +31,10 @@ public class Class {
         for(Student s : studentList) {
         	avg += s.getAverage();
         }
-        return ((double)avg / studentList.length);
+        return ((double)avg / studentList.size());
     }
     public double getStudentAverage(int stuNum) {
-        return studentList[stuNum].getAverage();
+        return studentList.get(stuNum).getAverage();
     }
     public double getStudentAverage(String stuName) {
         for(Student s : studentList) {
@@ -45,7 +45,7 @@ public class Class {
         return 0;
     }
     public String getStudentName(int stuNum) {
-    	return studentList[stuNum].getName();
+    	return studentList.get(stuNum).getName();
     }
     public String getStudentWithHighestAverage() {
         /*double[] highAverage = new double[studentList.length];
@@ -62,7 +62,7 @@ public class Class {
         	}
         }
         return name;*/
-    	Student highest = studentList[0];
+    	Student highest = studentList.get(0);
     	for(Student s : studentList) {
     		if(s.compareTo(highest) == 1) {
     			highest = s;
@@ -85,7 +85,7 @@ public class Class {
         	}
         }
         return name;*/
-    	Student lowest = studentList[0];
+    	Student lowest = studentList.get(0);
     	for(Student s : studentList) {
     		if(s.compareTo(lowest) == -1) {
     			lowest = s;

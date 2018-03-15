@@ -4,9 +4,11 @@
 //Class -
 //Lab  -
 package labs.unit11;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 public class Grades {
-    private double[] grades;
+    private ArrayList<Double> grades;
     public Grades() {
         setGrades("");
     }
@@ -15,18 +17,18 @@ public class Grades {
     }
     public void setGrades(String gradeList) {
         String[] gradesString = gradeList.split(" ");
-        grades = new double[gradesString.length - 2];
+        grades = new ArrayList<Double>();
         int index = 0;
         for (String grade: gradesString) {
             if (index > 1) {
                 grade = grade.trim();
-                grades[index - 2] = Double.valueOf(grade);
+                grades.add(index - 2,Double.valueOf(grade));
             }
             index++;
         }
     }
     public void setGrade(int spot, double grade) {
-    	grades[spot] = grade;
+    	grades.set(spot, grade);;
     }
     public double getSum() {
         double sum = 0.0;
@@ -36,18 +38,18 @@ public class Grades {
         return sum;
     }
     public double getLowGrade() {
-    	Arrays.sort(grades);
-        return grades[0];
+    	Collections.sort(grades);
+        return grades.get(0);
     }
     public double getHighGrade() {
-    	Arrays.sort(grades);
-        return grades[grades.length - 1];
+    	Collections.sort(grades);
+        return grades.get(grades.size() - 1);
     }
     public int getNumGrades() {
-        return grades.length;
+        return grades.size();
     }
     public String toString() {
-        String output = Arrays.toString(grades).replace('[', ' ').replace(']', ' ').trim();
+        String output = Arrays.toString(grades.toArray()).replace('[', ' ').replace(']', ' ').trim();
         return output;
     }
 }
