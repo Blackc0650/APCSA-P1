@@ -21,9 +21,9 @@ public class Lab18b
 		out.println("\nharry Monster :: " + harry);
 
 		out.println("\nchanging harry's properties ");				
-		harry.setHeight(7);
-		harry.setWeight(6);
-		harry.setAge(5);
+		harry.setMyHeight(7);
+		harry.setMyWeight(6);
+		harry.setMyAge(5);
 		out.println("\nharry Monster :: " + harry);
 
 		out.println("\ncloning harry");	
