@@ -55,6 +55,15 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		System.out.println(selectedCards.size());
+		System.out.println(containsJQK(selectedCards));
+		if(cardAt(selectedCards.get(0)).pointValue() + cardAt(selectedCards.get(1)).pointValue() == 11) {
+			return true;
+		}
+		else if(selectedCards.size() == 3) {
+			return containsJQK(selectedCards);
+		}
+		return false;
 	}
 
 	/**
@@ -68,6 +77,7 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		return containsPairSum11(this.cardIndexes()) || containsJQK(this.cardIndexes());
 	}
 
 	/**
@@ -79,7 +89,19 @@ public class ElevensBoard extends Board {
 	 *              contain an 11-pair; false otherwise.
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
-		
+		Card lastCard = this.cardAt(cardIndexes().size() - 1);
+		Card currentCard = null;
+		int index = 0;
+		while(currentCard != lastCard) {
+			currentCard = cardAt(index++);
+			for(int otherCardIndex : cardIndexes()) {
+				Card otherCard = cardAt(otherCardIndex);
+				if(otherCard != currentCard && otherCard.pointValue() + currentCard.pointValue() == 11) {
+					return true;
+				}
+			}
+		}
+		return false;
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 	}
 
@@ -92,19 +114,19 @@ public class ElevensBoard extends Board {
 	 *              include a jack, a queen, and a king; false otherwise.
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
-		int JQKcount = 0;
+		int[] JQKcount = {0,0,0};
 		for(int i : selectedCards) {
 			if(this.cardAt(i).rank().equalsIgnoreCase("jack")) {
-				JQKcount++;
+				JQKcount[0]++;
 			}
 			else if(this.cardAt(i).rank().equalsIgnoreCase("queen")) {
-				JQKcount++;
+				JQKcount[1]++;
 			}
 			else if(this.cardAt(i).rank().equalsIgnoreCase("king")) {
-				JQKcount++;
+				JQKcount[2]++;
 			}
 		}
-		return JQKcount >= 3;
+		return JQKcount[0] > 0 && JQKcount[1] > 0 && JQKcount[2] > 0;
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 	}
 }
