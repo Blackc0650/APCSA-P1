@@ -57,8 +57,10 @@ public class ElevensBoard extends Board {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 		System.out.println(selectedCards.size());
 		System.out.println(containsJQK(selectedCards));
-		if(cardAt(selectedCards.get(0)).pointValue() + cardAt(selectedCards.get(1)).pointValue() == 11) {
-			return true;
+		if(selectedCards.size() == 2) {
+			if(cardAt(selectedCards.get(0)).pointValue() + cardAt(selectedCards.get(1)).pointValue() == 11) {
+				return true;
+			}
 		}
 		else if(selectedCards.size() == 3) {
 			return containsJQK(selectedCards);
@@ -90,12 +92,14 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
 		Card lastCard = this.cardAt(cardIndexes().size() - 1);
-		Card currentCard = null;
+		Card currentCard = cardAt(0);
 		int index = 0;
 		while(currentCard != lastCard) {
-			currentCard = cardAt(index++);
+			currentCard = cardAt(index) == null ? new Card(null,null,0) : cardAt(index++);
+			System.out.println(currentCard.pointValue());
 			for(int otherCardIndex : cardIndexes()) {
 				Card otherCard = cardAt(otherCardIndex);
+				System.out.println(otherCard.pointValue());
 				if(otherCard != currentCard && otherCard.pointValue() + currentCard.pointValue() == 11) {
 					return true;
 				}
