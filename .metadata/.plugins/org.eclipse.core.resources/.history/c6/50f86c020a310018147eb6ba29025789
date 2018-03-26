@@ -21,7 +21,14 @@ public class Lab24d {
 				System.out.println(ticTacToe);
 			}
 		}
-		file.close();
+		
+
+
+
+
+
+
+
 	}
 	private static String getSimplePath(String path) {
 		String outerPath = Lab21i.class.getProtectionDomain().getCodeSource().getLocation().getFile();
@@ -31,3 +38,6 @@ public class Lab24d {
 		return outerPath + "/" + path;
 	}
 }
+
+
+

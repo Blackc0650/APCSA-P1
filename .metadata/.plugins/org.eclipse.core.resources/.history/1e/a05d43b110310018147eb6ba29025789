@@ -8,17 +8,24 @@ package labs.unit14;
 import java.util.Scanner;
 import static java.lang.System.*;
 
-public class FancyWord {
+public class FancyWord
+{
 	private char[][] mat;
-	public FancyWord() {
-		mat = new char[0][0];
+	public FancyWord()
+	{
+
 	}
 
-   public FancyWord(String s) {
-	   
-   }
+   public FancyWord(String s)
+	{
 
-	public String toString() {
+
+
+
+	}
+
+	public String toString()
+	{
 		String output="";
 
 

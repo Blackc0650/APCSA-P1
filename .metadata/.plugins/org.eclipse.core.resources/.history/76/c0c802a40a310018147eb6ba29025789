@@ -17,11 +17,19 @@ public class Lab24d {
 		String line = "";
 		while(file.hasNext()) {
 			if(!Character.isDigit(((line = file.next()).charAt(0)))) {
+				System.out.println(line);
 				ticTacToe = new TicTacToe(line);
 				System.out.println(ticTacToe);
 			}
 		}
-		file.close();
+		
+
+
+
+
+
+
+
 	}
 	private static String getSimplePath(String path) {
 		String outerPath = Lab21i.class.getProtectionDomain().getCodeSource().getLocation().getFile();
@@ -31,3 +39,6 @@ public class Lab24d {
 		return outerPath + "/" + path;
 	}
 }
+
+
+

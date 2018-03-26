@@ -12,7 +12,7 @@ import static java.lang.System.*;
 
 public class Lab24d {
 	public static void main( String args[] ) throws IOException {
-		Scanner file = new Scanner (new File(getSimplePath("Lab24d.dat")));
+		Scanner file = new Scanner (new File("Lab24d.dat"));
 		TicTacToe ticTacToe;
 		String line = "";
 		while(file.hasNext()) {
@@ -21,13 +21,15 @@ public class Lab24d {
 				System.out.println(ticTacToe);
 			}
 		}
-		file.close();
-	}
-	private static String getSimplePath(String path) {
-		String outerPath = Lab21i.class.getProtectionDomain().getCodeSource().getLocation().getFile();
-		outerPath = outerPath.substring(0, outerPath.length() - 4);
-		outerPath += "src/";
-		outerPath += Lab21i.class.getPackage().getName().replace('.', '/');
-		return outerPath + "/" + path;
+
+
+
+
+
+
+
 	}
 }
+
+
+
