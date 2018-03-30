@@ -6,47 +6,32 @@ package labs.unit13;
 //Lab  - 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+
 import static java.lang.System.*;
 
 class InsertionSort
 {
 	private ArrayList<String> list;
 
-	public InsertionSort()
-	{
-
-
-
+	public InsertionSort() {
+		list = new ArrayList<String>();
 	}
-
 	//modfiers
 	public void add( String  word)
 	{
-		int loc = 0;
-
-
-
-
-
-
-
-
+		int loc = Collections.binarySearch(list, word);
+		list.add(Math.abs((loc+1)), word);
 	}
 
 
-	public void remove(String word)
-	{
-
-
-
-
-
-
+	public void remove(String word) {
+		list.remove(word);
 	}
 
 	public String toString()
 	{
-		return "";
+		return Arrays.toString(list.toArray()).replace('[',' ').replace(']', ' ').trim();
 	}
 }
