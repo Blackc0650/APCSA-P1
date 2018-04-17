@@ -219,6 +219,43 @@ public class Picture extends SimplePicture
       }
     }
   }
+  public void setBlue()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setGreen(0);
+        pixelObj.setRed(0);
+      }
+    }
+  }
+  public void setRed()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setGreen(0);
+        pixelObj.setBlue(0);
+      }
+    }
+  }
+  public void setGreen()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setBlue(0);
+        pixelObj.setRed(0);
+      }
+    }
+  }
+
   
   
   /* Main method for testing - each class in Java can have a main 
@@ -226,11 +263,114 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("C:\\Users\\Blackc0650\\Desktop\\APCSA-P1\\Labs\\src\\labs\\unit16\\pixLab\\images\\beach.jpg");
-    
+    Picture beach = new Picture("/Users/CameronBlack/Desktop/APCSA-P1-master/Labs/src/labs/unit16/pixLab/images/beach.jpg");
     beach.explore();
     beach.zeroBlue();
     beach.explore();
   }
+
+public void negate() {
+	Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(255 - pixelObj.getRed());
+        pixelObj.setGreen(255 - pixelObj.getGreen());
+        pixelObj.setBlue(255 - pixelObj.getBlue());
+      }
+    }
+}
+public void grayscale() {
+	Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+    	int averageGrayScaleInt = pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue();
+    	averageGrayScaleInt /= 3;
+        pixelObj.setRed(averageGrayScaleInt);
+        pixelObj.setGreen(averageGrayScaleInt);
+        pixelObj.setBlue(averageGrayScaleInt);
+      }
+    }
+}
+
+public void fixUnderwater() {
+	Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(pixelObj.getRed() - 60);
+        pixelObj.setGreen(pixelObj.getGreen() - 60);
+        pixelObj.setBlue(pixelObj.getBlue() - 60);
+      }
+    }
+}
+
+public void mirrorRightToLeft() {
+	Pixel[][] pixels = this.getPixels2D();
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int width = pixels[0].length;
+    for (int row = 0; row < pixels.length; row++)
+    {
+      for (int col = 0; col < width / 2; col++)
+      {
+        leftPixel = pixels[row][col];
+        rightPixel = pixels[row][width - 1 - col];
+        leftPixel.setColor(rightPixel.getColor());
+      }
+    }
+}
+
+public void mirrorHorizontal() {
+	Pixel[][] pixels = this.getPixels2D();
+    Pixel topMostPixel = null;
+    Pixel bottomMostPixel = null;
+    int width = pixels[0].length;
+    for (int row = 0; row < pixels.length / 2; row++)
+    {
+      for (int col = 0; col < width; col++)
+      {
+        topMostPixel = pixels[row][col];
+        bottomMostPixel = pixels[pixels.length - 1 - row][col];
+        bottomMostPixel.setColor(topMostPixel.getColor());
+      }
+    }
+}
+
+public void mirrorHorizontalBotToTop() {
+	Pixel[][] pixels = this.getPixels2D();
+    Pixel topMostPixel = null;
+    Pixel bottomMostPixel = null;
+    int width = pixels[0].length;
+    for (int row = 0; row < pixels.length / 2; row++)
+    {
+      for (int col = 0; col < width; col++)
+      {
+        topMostPixel = pixels[row][col];
+        bottomMostPixel = pixels[pixels.length - 1 - row][col];
+        topMostPixel.setColor(bottomMostPixel.getColor());
+      }
+    }
+	
+}
+
+public void mirrorDiagonal() {
+	Pixel[][] pixels = this.getPixels2D();
+	Pixel upDiagonal = null;
+	Pixel downDiagonal = null;
+	for (int row = 0; row < pixels.length; row++) {
+		for (int col = 0; col < pixels.length; col++) {
+			
+			upDiagonal = pixels[row][col];
+			downDiagonal = pixels[col][row];
+			upDiagonal.setColor(downDiagonal.getColor());
+		}
+	}
+	
+}
   
 } // this } is the end of class Picture, put all new methods before this
