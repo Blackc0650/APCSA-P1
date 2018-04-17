@@ -101,42 +101,59 @@ public class PictureTester
 	  picture.mirrorDiagonal();
 	  picture.explore();
   }
+  public static void testMirrorArms() {
+	  Picture picture = new Picture(getSimplePathFromLead("snowman.jpg"));
+	  picture.mirrorArms();
+	  picture.explore();
+  }
+  public static void testMirrorGull() {
+	  Picture picture = new Picture(getSimplePathFromLead("seagull.jpg"));
+	  picture.mirrorGull();
+	  picture.explore();
+  }
+  public static void testCopy() {
+	  Picture canvas = new Picture(getSimplePathFromLead("640x480.jpg"));
+	   	canvas.copy(new Picture(getSimplePathFromLead("collage.jpg")), 50, 50);
+	    canvas.explore();
+  }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
   {
-    // uncomment a call here to run a test
-    // and comment out the ones you don't want
-    // to run
-    // testZeroBlue();
-    //testKeepOnlyBlue();
-    //testKeepOnlyRed();
-    //testKeepOnlyGreen();
-    //testNegate();
-    //testGrayscale();
-    //testFixUnderwater();
-    //testMirrorVertical();
-	//testMirrorVerticalRightToLeft();
-	//testMirrorHorizontal();
-	//testMirrorHorizontalBotToTop();
-    //testMirrorTemple();
-    //testMirrorArms();
-    //testMirrorGull();
-    testMirrorDiagonal();
-    //testCollage();
-    //testCopy();
-    //testEdgeDetection();
-    //testEdgeDetection2();
-    //testChromakey();
-    //testEncodeAndDecode();
-    //testGetCountRedOverValue(250);
-    //testSetRedToHalfValueInTopHalf();
-    //testClearBlueOverValue(200);
-    //testGetAverageForColumn(0);
+//    uncomment a call here to run a test
+//    and comment out the ones you don't want
+//    to run
+//    testZeroBlue();
+//    testKeepOnlyBlue();
+//    testKeepOnlyRed();
+//    testKeepOnlyGreen();
+//    testNegate();
+//    testGrayscale();
+//    testFixUnderwater();
+//    testMirrorVertical();
+//	  testMirrorVerticalRightToLeft();
+//	  testMirrorHorizontal();
+//	  testMirrorBotToTop();
+//    testMirrorTemple();
+//   testMirrorArms();
+//    testMirrorGull();
+//    testMirrorDiagonal();
+//    testCollage();
+//    testCopy();
+//    testEdgeDetection();
+//    Available
+   // testEdgeDetection2();
+ //     testChromakey();
+//    testEncodeAndDecode();
+//    testGetCountRedOverValue(250);
+//    testSetRedToHalfValueInTopHalf();
+//    testClearBlueOverValue(200);
+//    testGetAverageForColumn(0);
   }
 
 
 public static String getSimplePathFromLead(String fileName) {
-	  return "/Users/CameronBlack/Desktop/APCSA-P1-master/Labs/src/labs/unit16/pixLab/images/" + fileName;
+	
+	  return "C:\\Users\\Blackc0650\\Desktop\\APCSA-P1\\Labs\\src\\labs\\unit16\\pixLab\\images\\" + fileName;
   }
 }
