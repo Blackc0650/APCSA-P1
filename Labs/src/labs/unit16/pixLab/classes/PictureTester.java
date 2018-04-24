@@ -1,4 +1,7 @@
 package labs.unit16.pixLab.classes;
+
+import java.io.File;
+
 /**
  * This class contains class (static) methods
  * that will help you test the Picture class 
@@ -153,7 +156,13 @@ public class PictureTester
 
 
 public static String getSimplePathFromLead(String fileName) {
-	
-	  return "C:\\Users\\Blackc0650\\Desktop\\APCSA-P1\\Labs\\src\\labs\\unit16\\pixLab\\images\\" + fileName;
+	//return "C:\\Users\\Blackc0650\\Desktop\\APCSA-P1\\Labs\\src\\labs\\unit16\\pixLab\\images\\" + fileName;
+	String path = PictureTester.class.getProtectionDomain().getCodeSource().getLocation().toString();
+	path = path.replaceAll("bin","src");
+	path += PictureTester.class.getPackage().getName().replaceAll("classes", "images");
+	path = path.replace('.', File.separatorChar);
+	path += File.separatorChar + fileName;
+	path = path.substring(5);
+	return path;
   }
 }

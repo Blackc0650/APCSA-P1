@@ -263,7 +263,7 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("/Users/CameronBlack/Desktop/APCSA-P1-master/Labs/src/labs/unit16/pixLab/images/beach.jpg");
+    Picture beach = new Picture(PictureTester.getSimplePathFromLead("beach.jpg"));
     beach.explore();
     beach.zeroBlue();
     beach.explore();
