@@ -1,5 +1,5 @@
 package labs.unit15;
-//© A+ Computer Science  -  www.apluscompsci.com
+//ï¿½ A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class -
@@ -31,7 +31,8 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	{
 		//set up all variables related to the game
 
-
+		//TODO: INTERCEPTS IS NOT INCLUDED IN DEFAULT BLOCK TO BLOCK COMPAIRE
+		//MAKE SURE IT IS CUSTOM STATIC METHOD IN THIS CLASS
 
 
 		keys = new boolean[4];
@@ -41,7 +42,6 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		leftPaddle = new Paddle(50,300,3,50,Color.RED,5);
     	setBackground(Color.WHITE);
 		setVisible(true);
-		
 		new Thread(this).start();
 		addKeyListener(this);		//starts the key thread to log key strokes
 	}
@@ -123,7 +123,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			rightPaddle.moveDownAndDraw(graphToBack);
 		}
 		graphToBack.setColor(Color.WHITE);
-		graphToBack.drawString("RIGHT SCORE=" + (rightScore - 1) + " || LEFTSCORE=" + (leftScore - 1), 300, 50);
+		graphToBack.fillRect(300, 30, 250, 30);
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.drawString("RIGHT SCORE=" + rightScore + " || LEFTSCORE=" + leftScore, 300, 50);
 
@@ -146,8 +146,10 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
 	public void keyPressed(KeyEvent e)
 	{
+		System.out.println(e.getKeyChar());
 		switch(toUpperCase(e.getKeyChar()))
 		{
+			
 			case 'W' : keys[0]=true; break;
 			case 'Z' : keys[1]=true; break;
 			case 'I' : keys[2]=true; break;
@@ -157,6 +159,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
 	public void keyReleased(KeyEvent e)
 	{
+		System.out.println(e.getKeyChar());
 		switch(toUpperCase(e.getKeyChar()))
 		{
 			case 'W' : keys[0]=false; break;
