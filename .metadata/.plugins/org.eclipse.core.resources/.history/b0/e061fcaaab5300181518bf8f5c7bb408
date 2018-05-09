@@ -24,7 +24,7 @@ public class Tile extends Block {
 		this.life = life;
 	}
 	public Color getColor() {
-		Color starterColor = new Color(56,255,66);
+		Color starterColor = new Color(56f,255f,66f);
 		int addedBlue = starterColor.getBlue() + (life * 15);
 		if(addedBlue > 255)
 			addedBlue = 255;

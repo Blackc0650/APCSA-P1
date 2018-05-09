@@ -1,0 +1,21 @@
+package labs.extensions.lab15;
+
+import java.util.ArrayList;
+
+public class TileManager {
+	private ArrayList<Tile> tiles = new ArrayList<Tile>();
+	private int numTilesInRow;
+	private int tileWidth;
+	private int tileHeight;
+	private final int spaceing = 10;
+	public TileManager(int numTilesInRow, int tileWidth, int tileHeight) {
+		this.numTilesInRow = numTilesInRow;
+		this.tileWidth = tileWidth;
+		this.tileHeight = tileHeight;
+	}
+	public void addRows(int rowThickness) {
+		int totalWidth = (TheGame.WIDTH - (spaceing * (numTilesInRow + 1)) / tileWidth) + spaceing;
+		System.out.println(totalWidth);
+		System.out.println(totalWidth * numTilesInRow);
+	}
+}

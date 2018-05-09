@@ -39,7 +39,7 @@ public class Pong extends Canvas implements KeyListener, Runnable {
         graphToBack.fillRect(0, 0, TheGame.WIDTH, TheGame.HEIGHT);
         paddle.draw(graphToBack);
         ball.moveAndDraw(graphToBack);
-        tileManager.drawAllTiles(graphToBack);
+        tileManager.drawAllTiles(window);
         if(keys[0])
         	paddle.move('U');
         if(keys[1])
