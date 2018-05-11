@@ -1,5 +1,5 @@
 package labs.extensions.lab15;
-//© A+ Computer Science  -  www.apluscompsci.com
+//ï¿½ A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class -
@@ -7,15 +7,18 @@ package labs.extensions.lab15;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.util.HashMap;
 
 public class Block implements Locatable {
 	private int xPos;
 	private int yPos;
 	private int width;
 	private int height;
-
 	private Color color;
-
+	private Block[] outerBoundingBox;
+	private Direction currentDirection;
+	private QuadBox quadBox;
 	public Block() {
 		xPos = yPos = width = height = 0;
 		color = Color.BLACK;
@@ -32,6 +35,7 @@ public class Block implements Locatable {
 		setWidth(width);
 		setHeight(height);
 		color = Color.BLACK;
+		quadBox = new QuadBox(xPos - 15, yPos, 15, height,xPos + width, yPos, 15, height,xPos, yPos - 15, width, 15,xPos, yPos + height, width, 15);
 	}
 	public Block(int xPos,int yPos,int width,int height,Color color) {
 		setX(xPos);
@@ -41,8 +45,6 @@ public class Block implements Locatable {
 		setColor(color);
 	}	
    //add the other set methods
-   
-
    public void setColor(Color col) {
 	   this.color = col;
    }
@@ -113,4 +115,21 @@ public class Block implements Locatable {
 	public boolean intercepts(Block otherBlock) {
 	    return xPos < otherBlock.getX() + otherBlock.width && xPos + width > otherBlock.xPos && yPos < otherBlock.yPos + otherBlock.height && yPos + height > otherBlock.yPos;
 	}
+	public void updateDirection(Ball b) {
+		currentDirection = quadBox.getDirection(b);
+	}
+	/**
+	 * @deprecated
+	 */
+	public void drawOuterboundingBox(Graphics graphics) {
+		graphics.drawRect(xPos - 15, yPos, 15, height);
+		graphics.drawRect(xPos + width, yPos, 15, height);
+		graphics.drawRect(xPos, yPos - 15, width, 15);
+		graphics.drawRect(xPos, yPos + height, width, 15);
+	}
+	public Direction getDirection() {
+		return currentDirection;
+	}
+	
+	
 }

@@ -19,7 +19,7 @@ public class Pong extends Canvas implements KeyListener, Runnable {
     public Pong() {
         keys = new boolean[4];
         ball = new Ball(TheGame.WIDTH / 2, TheGame.HEIGHT / 4, 10, 10, Color.BLACK, 3, 1);
-        paddle = new Paddle(TheGame.WIDTH / 2,TheGame.HEIGHT / 2,40,40,Color.RED,3);
+        paddle = new Paddle(TheGame.WIDTH / 2,TheGame.HEIGHT / 2,40,40,new Color(224, 75, 49),3);
         tileManager = new TileManager(16);
         tileManager.addHorizontal(3,null);
         tileManager.addVertical(3);
@@ -50,6 +50,8 @@ public class Pong extends Canvas implements KeyListener, Runnable {
         if(keys[3])
         	paddle.move('L');
         twoDGraph.drawImage(back, null, 0, 0);
+        tileManager.updateDirection(ball);
+        tileManager.updateBallDirection(ball);
     }
 
     public void keyPressed(KeyEvent e) {
