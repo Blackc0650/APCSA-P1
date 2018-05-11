@@ -26,8 +26,8 @@ public class QuadBox {
 		this.height4 = height4;
 	}
 	private boolean intercepts(Block otherBlock,int xPos, int yPos, int width, int height) {
-		int xx = xPos;
-		int yy = yPos;
+		int xx = x;
+		int yy = y;
 		int wi = width;
 		int he = height;
 	    return xx < otherBlock.getX() + otherBlock.getWidth() && xx + wi > otherBlock.getX() && yy < otherBlock.getY() + otherBlock.getHeight() && yy + he > otherBlock.getY();
@@ -36,13 +36,13 @@ public class QuadBox {
 		if(this.intercepts(otherBlock, x, y, width, height)) {
 			return Direction.RIGHT;
 		}
-		if(this.intercepts(otherBlock, x2, y2, width2, height2)) {
+		else if(this.intercepts(otherBlock, x2, y2, width2, height2)) {
 			return Direction.LEFT;
 		}
-		if(this.intercepts(otherBlock, x3, y3, width3, height3)) {
+		else if(this.intercepts(otherBlock, x3, y3, width3, height3)) {
 			return Direction.UP;
 		}
-		if(this.intercepts(otherBlock, x4, y4, width4, height4)) {
+		else if(this.intercepts(otherBlock, x4, y4, width4, height4)) {
 			return Direction.DOWN;
 		}
 		return null;

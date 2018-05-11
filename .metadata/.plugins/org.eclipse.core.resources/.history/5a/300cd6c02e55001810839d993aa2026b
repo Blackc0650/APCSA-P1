@@ -7,6 +7,8 @@ package labs.extensions.lab15;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.util.HashMap;
 
 public class Block implements Locatable {
 	private int xPos;
@@ -58,7 +60,6 @@ public class Block implements Locatable {
 	   window.setColor(col);
 	      window.fillRect(getX(), getY(), getWidth(), getHeight());
 	      window.setColor(color);
-	      //quadBox.drawQuadBox(window);
    }
    
 	public boolean equals(Object obj) {
@@ -114,7 +115,7 @@ public class Block implements Locatable {
 	    return xPos < otherBlock.getX() + otherBlock.width && xPos + width > otherBlock.xPos && yPos < otherBlock.yPos + otherBlock.height && yPos + height > otherBlock.yPos;
 	}
 	public void updateDirection(Ball b) {
-		currentDirection = quadBox.getDirection(b) == null ? currentDirection : quadBox.getDirection(b);
+		currentDirection = quadBox.getDirection(b);
 	}
 	/**
 	 * @deprecated

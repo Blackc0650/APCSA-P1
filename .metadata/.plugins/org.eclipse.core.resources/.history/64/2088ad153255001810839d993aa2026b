@@ -97,11 +97,11 @@ public class TileManager {
 		for (int i = 0; i < tiles.size(); i++) {
 			if(tiles.get(i).intercepts(b)) {
 				tiles.get(i).setLife(tiles.get(i).getLife() - 1);
-				Tile currentTile = tiles.get(i);
 				if(tiles.get(i).getLife() <= 0) {
 					tiles.remove(tiles.get(i));
+					break;
 				}
-				Direction newDirection = currentTile.getDirection();
+				Direction newDirection = tiles.get(i).getDirection();
 				System.out.println(newDirection);
 				if(newDirection == Direction.UP || newDirection == Direction.DOWN) {
 					b.setYSpeed(b.getYSpeed() * -1);

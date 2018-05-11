@@ -40,6 +40,7 @@ public class Pong extends Canvas implements KeyListener, Runnable {
         graphToBack.fillRect(0, 0, TheGame.WIDTH, TheGame.HEIGHT);
         paddle.draw(graphToBack);
         ball.moveAndDraw(graphToBack);
+        tileManager.drawAll(graphToBack);
         if(keys[0])
         	paddle.move('U');
         if(keys[1])
@@ -48,16 +49,15 @@ public class Pong extends Canvas implements KeyListener, Runnable {
         	paddle.move('R');
         if(keys[3])
         	paddle.move('L');
+        twoDGraph.drawImage(back, null, 0, 0);
         tileManager.updateDirection(ball);
         tileManager.updateBallDirection(ball);
         if(ball.getX() < 10 || ball.getX() > TheGame.WIDTH - 10) {
         	ball.setXSpeed(ball.getXSpeed() * -1);
         }
-        else if(ball.getY() < 10 || ball.getY() > TheGame.HEIGHT - 30) {
+        else if(ball.getY() < 10 || ball.getY() > TheGame.HEIGHT - 10) {
         	ball.setYSpeed(ball.getYSpeed() * -1);
         }
-        tileManager.drawAll(graphToBack);
-        twoDGraph.drawImage(back, null, 0, 0);
     }
 
     public void keyPressed(KeyEvent e) {

@@ -2,6 +2,10 @@ package labs.extensions.lab15;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Tile extends Block {
 	private int life;

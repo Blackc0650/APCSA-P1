@@ -33,6 +33,7 @@ public class QuadBox {
 	    return xx < otherBlock.getX() + otherBlock.getWidth() && xx + wi > otherBlock.getX() && yy < otherBlock.getY() + otherBlock.getHeight() && yy + he > otherBlock.getY();
 	}
 	public Direction getDirection(Block otherBlock) {
+		System.out.println(otherBlock.getX() + " | " + x2);
 		if(this.intercepts(otherBlock, x, y, width, height)) {
 			return Direction.RIGHT;
 		}
