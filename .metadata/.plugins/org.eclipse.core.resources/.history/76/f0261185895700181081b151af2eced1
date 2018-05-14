@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Tile extends Block {
+	private long delay = 24;
 	private int life;
 	public Tile(int life, int xPos, int yPos, int width, int height) {
 		super(xPos, yPos, width, height);
@@ -17,7 +18,10 @@ public class Tile extends Block {
 		return life;
 	}
 	public void setLife(int life) {
+		if(System.currentTimeMillis() > delay) {
 			this.life = life;
+			delay = System.currentTimeMillis() + delay;
+		}
 	}
 	public Color getColor() {
 		Color starterColor = new Color(56,255,66);

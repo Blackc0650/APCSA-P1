@@ -19,10 +19,10 @@ public class Pong extends Canvas implements KeyListener, Runnable {
     public Pong() {
         keys = new boolean[4];
         ball = new Ball(TheGame.WIDTH / 2, TheGame.HEIGHT / 4, 10, 10, Color.BLACK, -1, -1);
-        paddle = new Paddle(TheGame.WIDTH / 2,TheGame.HEIGHT / 2,40,40,new Color(224, 75, 49),1);
+        paddle = new Paddle(TheGame.WIDTH / 2,TheGame.HEIGHT / 2,40,40,new Color(224, 75, 49),3);
         tileManager = new TileManager(16);
-        tileManager.addHorizontal(2,null);
-        tileManager.addVertical(2);
+        tileManager.addHorizontal(3,null);
+        tileManager.addVertical(3);
         setBackground(Color.WHITE);
         setVisible(true);
         new Thread(this).start();
@@ -57,10 +57,6 @@ public class Pong extends Canvas implements KeyListener, Runnable {
         	ball.setYSpeed(ball.getYSpeed() * -1);
         }
         tileManager.drawAll(graphToBack);
-        TileManager.updateQuadBox(paddle);
-        TileManager.updateBlockDirection(ball, paddle);
-        TileManager.updateBallDirection(ball, paddle);
-        tileManager.getLevelStatus();
         twoDGraph.drawImage(back, null, 0, 0);
     }
 

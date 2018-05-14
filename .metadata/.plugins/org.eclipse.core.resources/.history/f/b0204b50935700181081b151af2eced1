@@ -18,7 +18,7 @@ public class TileManager {
 	private int levelCount = 1;
 	public TileManager(int numTiles) {
 		this.numTiles = numTiles;
-		this.space = (numTiles / 8) * 10;
+		this.space = (numTiles / 10) * 10;
 		int totalWidth = TheGame.WIDTH - (space * (numTiles + 1));
 		this.tileWidth = totalWidth / numTiles;
 		this.tileHeight = space;

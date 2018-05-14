@@ -115,9 +115,6 @@ public class Block implements Locatable {
 	    return xPos < otherBlock.getX() + otherBlock.width && xPos + width > otherBlock.xPos && yPos < otherBlock.yPos + otherBlock.height && yPos + height > otherBlock.yPos;
 	}
 	public void updateDirection(Ball b) {
-		if(quadBox.getDirection(b) == null) {
-			currentDirection = Direction.getOppositeDirection(currentDirection);
-		}
 		currentDirection = quadBox.getDirection(b) == null ? currentDirection : quadBox.getDirection(b);
 	}
 	/**
@@ -133,9 +130,7 @@ public class Block implements Locatable {
 		return currentDirection;
 	}
 	public void updateQuadBox() {
-		if(this instanceof Paddle) {
-			quadBox = new QuadBox(xPos - 30, yPos, 30, height,xPos + width, yPos, 30, height,xPos, yPos - 30, width, 30,xPos, yPos + height, width, 30);
-		}
+		quadBox = new QuadBox(xPos - 15, yPos, 15, height,xPos + width, yPos, 15, height,xPos, yPos - 15, width, 15,xPos, yPos + height, width, 15);
 	}
 	
 	

@@ -11,11 +11,6 @@ public class TileManager {
 	private int space;
 	private int greatestWidth;
 	private Tile lastTile = null;
-	private static long delay = 500;
-	private long smallDelay = 10;
-	private long smallTimer;
-	private static long time = delay;
-	private int levelCount = 1;
 	public TileManager(int numTiles) {
 		this.numTiles = numTiles;
 		this.space = (numTiles / 8) * 10;
@@ -95,11 +90,8 @@ public class TileManager {
 		}
 	}
 	public void updateDirection(Ball b) {
-		if(smallTimer < System.currentTimeMillis()) {
 		for(Tile tile : tiles) {
 			tile.updateDirection(b);
-		}
-		smallTimer = System.currentTimeMillis() + smallDelay;
 		}
 	}
 	public void updateBallDirection(Ball b) {
@@ -125,7 +117,7 @@ public class TileManager {
 		}
 	}
 	public static void updateBallDirection(Ball b, Block block) {
-		if(block.intercepts(b) && System.currentTimeMillis() > time) {
+		if(block.intercepts(b)) {
 			Direction newDirection = block.getDirection();
 			System.out.println(newDirection);
 			if(newDirection == Direction.UP || newDirection == Direction.DOWN) {
@@ -134,18 +126,10 @@ public class TileManager {
 			else if(newDirection == Direction.RIGHT || newDirection == Direction.LEFT) {
 				b.setXSpeed(b.getXSpeed() * -1);
 			}
-			time = System.currentTimeMillis() + delay;
 		}
 	}
 	public static void updateBlockDirection(Ball b,Block block) {
 		block.updateDirection(b);
-	}
-	public static void updateQuadBox(Block block) {
-		block.updateQuadBox();
-	}
-	public int getLevelStatus() {
-		System.out.println(tiles.size());
-		return levelCount;
 	}
 	
 }

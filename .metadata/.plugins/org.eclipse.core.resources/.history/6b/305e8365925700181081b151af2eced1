@@ -60,7 +60,6 @@ public class Pong extends Canvas implements KeyListener, Runnable {
         TileManager.updateQuadBox(paddle);
         TileManager.updateBlockDirection(ball, paddle);
         TileManager.updateBallDirection(ball, paddle);
-        tileManager.getLevelStatus();
         twoDGraph.drawImage(back, null, 0, 0);
     }
 

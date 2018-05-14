@@ -59,7 +59,7 @@ public class Block implements Locatable {
 	   window.setColor(col);
 	      window.fillRect(getX(), getY(), getWidth(), getHeight());
 	      window.setColor(color);
-	      //quadBox.drawQuadBox(window);
+	      quadBox.drawQuadBox(window);
    }
    
 	public boolean equals(Object obj) {

@@ -115,9 +115,6 @@ public class Block implements Locatable {
 	    return xPos < otherBlock.getX() + otherBlock.width && xPos + width > otherBlock.xPos && yPos < otherBlock.yPos + otherBlock.height && yPos + height > otherBlock.yPos;
 	}
 	public void updateDirection(Ball b) {
-		if(quadBox.getDirection(b) == null) {
-			currentDirection = Direction.getOppositeDirection(currentDirection);
-		}
 		currentDirection = quadBox.getDirection(b) == null ? currentDirection : quadBox.getDirection(b);
 	}
 	/**
