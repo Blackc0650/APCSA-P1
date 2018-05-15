@@ -117,6 +117,7 @@ public class Block implements Locatable {
 	public void updateDirection(Ball b) {
 		if(quadBox.getDirection(b) == null) {
 			currentDirection = Direction.getOppositeDirection(currentDirection);
+			return;
 		}
 		currentDirection = quadBox.getDirection(b) == null ? currentDirection : quadBox.getDirection(b);
 	}
