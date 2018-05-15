@@ -428,5 +428,69 @@ public void mirrorGull() {
 	      }
 	    }
 	  }
+
+public void encode(Picture picture) {
+	// * b b *
+	//  * b *
+	//   * *
+	//    *
+	//    x
+	//
+	//
+	Pixel[][] picturePixels = this.getPixels2D();
+	Pixel[][] messagePixels = picture.getPixels2D();
+	int halfY = this.getHeight() / 2;
+	for (int y = halfY; y < this.getHeight(); y++) {
+		for (int x = 0; x < this.getWidth(); x++) {
+			if(messagePixels[y][x].colorDistance(Color.BLACK) < 50) {
+				System.out.println("Yes?");
+				int startY = y - 1;
+				int startX = x;
+				int spreadDist = 0;
+				final int yy = startY;
+				for (startY = y - 1; startY > yy - 4; startY--) {
+					if(spreadDist == 0) {
+						if(messagePixels[startY][startX].getRed() % 2 != 0) {
+							messagePixels[startY][startX].setRed(messagePixels[startY][startX].getRed() - 1);
+							picturePixels[startY][startX].setColor(Color.BLACK);
+						}
+					}
+					else {
+						int negX = startX - spreadDist;
+						int posX = startX + spreadDist;
+						System.out.println(negX);
+//						if(messagePixels[startY][negX].getRed() % 2 != 0) {
+							messagePixels[startY][negX].setRed(messagePixels[startY][negX].getRed() - 1);
+							picturePixels[startY][negX].setColor(Color.BLACK);
+//						}
+//						if(messagePixels[startY][posX].getRed() % 2 != 0) {
+							messagePixels[startY][posX].setRed(messagePixels[startY][posX].getRed() - 1);
+							picturePixels[startY][posX].setColor(Color.BLACK);
+//						}
+					}
+					spreadDist++;
+				}
+				return;
+				//spreadDist = 0;
+//				for (startY -= 2; startY > startY - 2; startY--) {
+//					if(messagePixels[startY][startX].getRed() % 2 != 0) {
+//						messagePixels[startY][startX].setRed(messagePixels[startY][startX].getRed() - 1);
+//					}
+//					else {
+//						int negX = startX - spreadDist;
+//						int posX = startX + spreadDist;
+//						if(messagePixels[startY][negX].getRed() % 2 != 0) {
+//							messagePixels[startY][negX].setRed(messagePixels[startY][negX].getRed() - 1);
+//						}
+//						if(messagePixels[startY][posX].getRed() % 2 != 0) {
+//							messagePixels[startY][posX].setRed(messagePixels[startY][posX].getRed() - 1);
+//						}
+//					spreadDist++;
+//					}
+//				}
+			}
+		}
+	}
+}
   
 } // this } is the end of class Picture, put all new methods before this

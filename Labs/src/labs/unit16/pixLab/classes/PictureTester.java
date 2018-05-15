@@ -119,6 +119,11 @@ public class PictureTester
 	   	canvas.copy(new Picture(getSimplePathFromLead("collage.jpg")), 50, 50);
 	    canvas.explore();
   }
+  public static void testEncodeAndDecode() {
+	  Picture picture = new Picture(getSimplePathFromLead("beach.jpg"));
+	  picture.encode(new Picture(getSimplePathFromLead("text.jpg")));
+	  picture.explore();
+  }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -147,7 +152,7 @@ public class PictureTester
 //    Available
    // testEdgeDetection2();
  //     testChromakey();
-//    testEncodeAndDecode();
+    testEncodeAndDecode();
 //    testGetCountRedOverValue(250);
 //    testSetRedToHalfValueInTopHalf();
 //    testClearBlueOverValue(200);

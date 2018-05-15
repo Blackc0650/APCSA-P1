@@ -12,7 +12,7 @@ public class TileManager {
 	private int greatestWidth;
 	private Tile lastTile = null;
 	private static long delay = 500;
-	private long smallDelay = 30;
+	private long smallDelay = 10;
 	private long smallTimer;
 	private static long time = delay;
 	private int levelCount = 1;
@@ -144,7 +144,7 @@ public class TileManager {
 		block.updateQuadBox();
 	}
 	public int getLevelStatus() {
-		//System.out.println(tiles.size());
+		System.out.println(tiles.size());
 		return levelCount;
 	}
 	
