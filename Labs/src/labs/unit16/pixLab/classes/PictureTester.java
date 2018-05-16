@@ -123,6 +123,7 @@ public class PictureTester
 	  Picture picture = new Picture(getSimplePathFromLead("beach.jpg"));
 	  picture.encode(new Picture(getSimplePathFromLead("text.jpg")));
 	  picture.explore();
+	  picture.decode().explore();
   }
   /** Main method for testing.  Every class can have a main
     * method in Java */

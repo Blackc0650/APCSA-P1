@@ -430,67 +430,124 @@ public void mirrorGull() {
 	  }
 
 public void encode(Picture picture) {
-	// * b b *
-	//  * b *
-	//   * *
-	//    *
-	//    x
+	//  b
+	//b c b
+	//  b
 	//
 	//
-	Pixel[][] picturePixels = this.getPixels2D();
+	int color = 0;
+	Pixel[][] pixels = this.getPixels2D();
 	Pixel[][] messagePixels = picture.getPixels2D();
-	int halfY = this.getHeight() / 2;
-	for (int y = halfY; y < this.getHeight(); y++) {
-		for (int x = 0; x < this.getWidth(); x++) {
-			if(messagePixels[y][x].colorDistance(Color.BLACK) < 50) {
-				System.out.println("Yes?");
-				int startY = y - 1;
-				int startX = x;
-				int spreadDist = 0;
-				final int yy = startY;
-				for (startY = y - 1; startY > yy - 4; startY--) {
-					if(spreadDist == 0) {
-						if(messagePixels[startY][startX].getRed() % 2 != 0) {
-							messagePixels[startY][startX].setRed(messagePixels[startY][startX].getRed() - 1);
-							picturePixels[startY][startX].setColor(Color.BLACK);
-						}
+//	System.out.println(pixels.length);System.out.println(pixels[0].length);
+//	System.out.println(messagePixels.length);System.out.println(messagePixels[0].length);
+	for(int row = 2; row < messagePixels.length - 2; row++) {
+		for(int col = 2; col < messagePixels[0].length - 2; col++) {
+			Pixel messagePixel = messagePixels[row][col];
+			if(messagePixel.colorDistance(Color.BLACK) < 50) {
+				Pixel[] pixelCollection = new Pixel[12];
+				int spread = 0;
+				for (int i = 0; i < pixelCollection.length; i++) {
+					System.out.println(spread);
+					if(i % 4 == 0 && i != 0)
+						spread++;
+					if(i % 4 == 0) {
+						pixelCollection[i] = pixels[row + spread][row + spread];
 					}
-					else {
-						int negX = startX - spreadDist;
-						int posX = startX + spreadDist;
-						System.out.println(negX);
-//						if(messagePixels[startY][negX].getRed() % 2 != 0) {
-							messagePixels[startY][negX].setRed(messagePixels[startY][negX].getRed() - 1);
-							picturePixels[startY][negX].setColor(Color.BLACK);
-//						}
-//						if(messagePixels[startY][posX].getRed() % 2 != 0) {
-							messagePixels[startY][posX].setRed(messagePixels[startY][posX].getRed() - 1);
-							picturePixels[startY][posX].setColor(Color.BLACK);
-//						}
+					else if(i % 4 == 1) {
+						pixelCollection[i] = pixels[row + spread][row - spread];
 					}
-					spreadDist++;
+					else if(i % 4 == 2) {
+						pixelCollection[i] = pixels[row - spread][row + spread];
+					}
+					else if(i % 4 == 3) {
+						pixelCollection[i] = pixels[row - spread][row - spread];
+					}
 				}
-				return;
-				//spreadDist = 0;
-//				for (startY -= 2; startY > startY - 2; startY--) {
-//					if(messagePixels[startY][startX].getRed() % 2 != 0) {
-//						messagePixels[startY][startX].setRed(messagePixels[startY][startX].getRed() - 1);
-//					}
-//					else {
-//						int negX = startX - spreadDist;
-//						int posX = startX + spreadDist;
-//						if(messagePixels[startY][negX].getRed() % 2 != 0) {
-//							messagePixels[startY][negX].setRed(messagePixels[startY][negX].getRed() - 1);
-//						}
-//						if(messagePixels[startY][posX].getRed() % 2 != 0) {
-//							messagePixels[startY][posX].setRed(messagePixels[startY][posX].getRed() - 1);
-//						}
-//					spreadDist++;
-//					}
-//				}
+				for(Pixel pixel : pixelCollection) {
+					switch(color) {
+					case 0:
+						if(pixel.getRed() % 2 == 1) {
+							pixel.setRed(pixel.getRed() + 1);
+						}
+						break;
+					case 1:
+						if(pixel.getBlue() % 2 == 1) {
+							pixel.setBlue(pixel.getBlue() + 1);
+						}
+						break;
+					case 2:
+						if(pixel.getGreen() % 2 == 1) {
+							pixel.setGreen(pixel.getGreen() + 1);
+						}
+						break;
+					}
+				}
+				if(color >= 2)
+					color = -1;
+				color++;
 			}
 		}
 	}
+	
+}
+public Picture decode() {
+	int color = 0;
+	Pixel[][] pixels = this.getPixels2D();
+	Picture messagePicture = new Picture(pixels.length,pixels[0].length);
+	Pixel[][] messagePixels = messagePicture.getPixels2D();
+	for(int row = 2; row < messagePixels.length - 2; row++) {
+		for(int col = 2; col < messagePixels[0].length - 2; col++) {
+//			Pixel right = pixels[row][col + 1];
+//			Pixel left = pixels[row][col - 1];
+//			Pixel up = pixels[row - 1][col];
+//			Pixel down = pixels[row + 1][col];
+//			Pixel[] pixelCollection = {right,left,up,down,pixels[row][col + 2],pixels[row][col - 2],pixels[row + 2][col],pixels[row - 2][col],pixels[row - 1][col - 1],pixels[row + 1][col + 1],pixels[row - 1][col + 1],pixels[row + 1][col - 1],pixels[row + 2][col + 2],pixels[row - 2][col - 2],pixels[row + 2][col - 2],pixels[row - 2][col + 2]};
+			Pixel[] pixelCollection = new Pixel[12];
+			int spread = 0;
+			for (int i = 0; i < pixelCollection.length; i++) {
+				System.out.println(spread);
+				if(i % 4 == 0 && i != 0)
+					spread++;
+				if(i % 4 == 0) {
+					pixelCollection[i] = pixels[row + spread][row + spread];
+				}
+				else if(i % 4 == 1) {
+					pixelCollection[i] = pixels[row + spread][row - spread];
+				}
+				else if(i % 4 == 2) {
+					pixelCollection[i] = pixels[row - spread][row + spread];
+				}
+				else if(i % 4 == 3) {
+					pixelCollection[i] = pixels[row - spread][row - spread];
+				}
+			}
+			boolean similar = true;
+			for(Pixel pixel : pixelCollection) {
+				switch(color) {
+				case 0:
+					if(pixel.getRed() % 2 == 1) {
+						similar = false;
+					}
+					break;
+				case 1:
+					if(pixel.getBlue() % 2 == 1) {
+						similar = false;
+					}
+					break;
+				case 2:
+					if(pixel.getGreen() % 2 == 1) {
+						similar = false;
+					}
+				}
+			}
+			if(similar)
+				messagePixels[row][col].setColor(Color.BLACK);
+			if(color >= 2)
+				color = -1;
+			color++;
+		}
+	}
+	return messagePicture;
 }
   
 } // this } is the end of class Picture, put all new methods before this
