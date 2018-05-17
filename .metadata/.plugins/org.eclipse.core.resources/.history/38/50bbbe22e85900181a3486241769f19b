@@ -12,10 +12,10 @@ public class TileManager {
 	private int greatestWidth;
 	private Tile lastTile = null;
 	private static long delay = 500;
-	private long smallDelay = 10;
+	private long smallDelay = 50;
 	private long smallTimer;
 	private static long time = delay;
-	private static int levelCount = 1;
+	private int levelCount = 1;
 	public TileManager(int numTiles) {
 		this.numTiles = numTiles;
 		this.space = (numTiles / 8) * 10;
@@ -80,20 +80,11 @@ public class TileManager {
 			tileHeight = (originalHeight + space) * numRow - space;
 			tileWidth += originalWidth + space;
 		}
-		removeOutOfBounds();
 	}
 	private void removeOverlap(int x, int y) {
 		for (int i = 0; i < tiles.size(); i++) {
 			if(tiles.get(i).getX() == x && tiles.get(i).getY() == y) {
 				tiles.remove(tiles.get(i));
-			}
-		}
-	}
-	private void removeOutOfBounds() {
-		for(int x = 0; x < tiles.size(); x++) {
-			Tile tile = tiles.get(x);
-			if(tile.getX() < 0 || tile.getY() < 0 || tile.getX() > TheGame.WIDTH || tile.getHeight() > TheGame.HEIGHT) {
-				tiles.remove(tile);
 			}
 		}
 	}
@@ -118,17 +109,11 @@ public class TileManager {
 				if(lastTile != currentTile) {
 					tiles.get(i).setLife(tiles.get(i).getLife() - 1);
 				}
-				if(lastTile == currentTile) {
-					if(tiles.get(i).getLife() <= 0) {
-						tiles.remove(tiles.get(i));
-					}
-					return;
-				}
-				Direction newDirection = currentTile == lastTile ? lastTile.getDirection() : currentTile.getDirection();
 				lastTile = currentTile;
 				if(tiles.get(i).getLife() <= 0) {
 					tiles.remove(tiles.get(i));
 				}
+				Direction newDirection = currentTile.getDirection();
 				//System.out.println(newDirection);
 				if(newDirection == Direction.UP || newDirection == Direction.DOWN) {
 					b.setYSpeed(b.getYSpeed() * -1);
@@ -159,13 +144,8 @@ public class TileManager {
 		block.updateQuadBox();
 	}
 	public int getLevelStatus() {
+		System.out.println(tiles.size());
 		return levelCount;
-	}
-	public int getTilesLeft() {
-		return tiles.size();
-	}
-	public void reset() {
-		tiles.clear();
 	}
 	
 }

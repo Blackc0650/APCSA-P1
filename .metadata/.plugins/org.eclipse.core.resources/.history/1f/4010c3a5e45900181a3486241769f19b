@@ -440,10 +440,8 @@ public void encode(Picture picture) {
 	Pixel[][] messagePixels = picture.getPixels2D();
 //	System.out.println(pixels.length);System.out.println(pixels[0].length);
 //	System.out.println(messagePixels.length);System.out.println(messagePixels[0].length);
-	//Iterate through all the pixels
 	for(int row = 2; row < messagePixels.length - 2; row++) {
 		for(int col = 2; col < messagePixels[0].length - 2; col++) {
-			//Skip over a pixel for the least value in rgb
 			Pixel skipPixel = pixels[row][col + 2];
 			if (skipPixel.getBlue() % 2 == 0 && skipPixel.getBlue() < skipPixel.getRed() && skipPixel.getBlue() < skipPixel.getGreen()) {
 				skipPixel.setBlue(skipPixel.getBlue() - 1);
@@ -454,13 +452,12 @@ public void encode(Picture picture) {
 			else if (skipPixel.getRed() % 2 == 0 && skipPixel.getRed() < skipPixel.getBlue() && skipPixel.getRed() < skipPixel.getGreen()) {
 				skipPixel.setRed(skipPixel.getRed() - 1);
 			}
-			//if black
 			Pixel messagePixel = messagePixels[row][col];
 			if(messagePixel.colorDistance(Color.BLACK) < 50) {
-				//load in pixels creating a staggered circle
 				Pixel[] pixelCollection = new Pixel[16];
 				int index = 0;
 				for (int i = -2; i < 2; i++) {
+					System.out.println(index);
 					pixelCollection[index] = pixels[row][col + i];
 					pixelCollection[index + 4] = pixels[row + i][col];
 					pixelCollection[index + 8] = pixels[row + i][col - i];
@@ -468,15 +465,12 @@ public void encode(Picture picture) {
 					index++;
 				}
 				index = 0;
-				//iterate over the pixel collection
 				for(Pixel pixel : pixelCollection) {
-					//every four pixels switch the color
 					if(index % 4 == 0 && index != 0)
 						color++;
 					index++;
 					if(color >= 2)
 						color = -1;
-					//change the r g b values to even accordingly
 					switch(color) {
 					case 0:
 						if(pixel.getRed() % 2 == 1) {
@@ -556,35 +550,6 @@ public Picture decode() {
 			if(color >= 2)
 				color = -1;
 			color++;
-		}
-	}
-	//clean it up a little bit
-	for(int row = 2; row < messagePixels.length - 2; row++) {
-		for(int col = 2; col < messagePixels[0].length - 2; col++) {
-			Pixel currentPixel = messagePixels[row][col];
-			Pixel right = messagePixels[row][col + 1];
-			Pixel left = messagePixels[row][col - 1];
-			Pixel up = messagePixels[row - 1][col];
-			Pixel down = messagePixels[row + 1][col];
-			if(currentPixel.getColor().getRed() == 0 && currentPixel.getBlue() == 0 && currentPixel.getGreen() == 0) {
-				int sideCount = 0;
-				if(right.getAverage() == 255) {
-					sideCount++;
-				}
-				if(left.getAverage() == 255) {
-					sideCount++;
-				}
-				if(up.getAverage() == 255) {
-					sideCount++;
-				}
-				if(down.getAverage() == 255) {
-					sideCount++;
-				}
-				if(sideCount >= 3) {
-					currentPixel.setColor(Color.WHITE);
-				}
-				
-			}
 		}
 	}
 	return messagePicture;

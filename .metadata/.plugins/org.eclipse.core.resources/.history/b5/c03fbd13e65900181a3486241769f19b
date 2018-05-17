@@ -567,23 +567,7 @@ public Picture decode() {
 			Pixel up = messagePixels[row - 1][col];
 			Pixel down = messagePixels[row + 1][col];
 			if(currentPixel.getColor().getRed() == 0 && currentPixel.getBlue() == 0 && currentPixel.getGreen() == 0) {
-				int sideCount = 0;
-				if(right.getAverage() == 255) {
-					sideCount++;
-				}
-				if(left.getAverage() == 255) {
-					sideCount++;
-				}
-				if(up.getAverage() == 255) {
-					sideCount++;
-				}
-				if(down.getAverage() == 255) {
-					sideCount++;
-				}
-				if(sideCount >= 3) {
-					currentPixel.setColor(Color.WHITE);
-				}
-				
+				System.out.println(true);
 			}
 		}
 	}

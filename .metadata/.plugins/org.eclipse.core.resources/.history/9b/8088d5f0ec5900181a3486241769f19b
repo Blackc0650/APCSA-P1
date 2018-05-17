@@ -15,7 +15,7 @@ public class TileManager {
 	private long smallDelay = 10;
 	private long smallTimer;
 	private static long time = delay;
-	private static int levelCount = 1;
+	private int levelCount = 1;
 	public TileManager(int numTiles) {
 		this.numTiles = numTiles;
 		this.space = (numTiles / 8) * 10;
@@ -80,20 +80,11 @@ public class TileManager {
 			tileHeight = (originalHeight + space) * numRow - space;
 			tileWidth += originalWidth + space;
 		}
-		removeOutOfBounds();
 	}
 	private void removeOverlap(int x, int y) {
 		for (int i = 0; i < tiles.size(); i++) {
 			if(tiles.get(i).getX() == x && tiles.get(i).getY() == y) {
 				tiles.remove(tiles.get(i));
-			}
-		}
-	}
-	private void removeOutOfBounds() {
-		for(int x = 0; x < tiles.size(); x++) {
-			Tile tile = tiles.get(x);
-			if(tile.getX() < 0 || tile.getY() < 0 || tile.getX() > TheGame.WIDTH || tile.getHeight() > TheGame.HEIGHT) {
-				tiles.remove(tile);
 			}
 		}
 	}

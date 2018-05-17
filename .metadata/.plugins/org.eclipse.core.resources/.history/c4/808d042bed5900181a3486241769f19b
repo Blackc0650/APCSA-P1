@@ -15,7 +15,7 @@ public class TileManager {
 	private long smallDelay = 10;
 	private long smallTimer;
 	private static long time = delay;
-	private static int levelCount = 1;
+	private int levelCount = 1;
 	public TileManager(int numTiles) {
 		this.numTiles = numTiles;
 		this.space = (numTiles / 8) * 10;

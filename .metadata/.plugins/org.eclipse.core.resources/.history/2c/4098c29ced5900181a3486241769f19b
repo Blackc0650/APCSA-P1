@@ -18,11 +18,11 @@ public class Pong extends Canvas implements KeyListener, Runnable {
     private TileManager tileManager;
     public Pong() {
         keys = new boolean[4];
-        ball = new Ball(TheGame.WIDTH / 2, TheGame.HEIGHT / 4, 10, 10, Color.BLACK, -2, -1);
+        ball = new Ball(TheGame.WIDTH / 2, TheGame.HEIGHT / 4, 10, 10, Color.BLACK, -20, -10);
         paddle = new Paddle(TheGame.WIDTH / 2,TheGame.HEIGHT / 2,40,40,new Color(224, 75, 49),1);
         tileManager = new TileManager(16);
-        tileManager.addHorizontal(3,null);
-        tileManager.addVertical(3);
+        tileManager.addHorizontal(2,null);
+        tileManager.addVertical(2);
         setBackground(Color.WHITE);
         setVisible(true);
         new Thread(this).start();

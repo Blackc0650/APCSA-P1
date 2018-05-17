@@ -121,8 +121,7 @@ public class PictureTester
   }
   public static void testEncodeAndDecode() {
 	  Picture picture = new Picture(getSimplePathFromLead("seagull.jpg"));
-	  picture.explore();
-	  picture.encode(new Picture(getSimplePathFromLead("msg.jpg")));
+	  picture.encode(new Picture(getSimplePathFromLead("apple.jpg")));
 	  picture.explore();
 	  picture.decode().explore();
   }
