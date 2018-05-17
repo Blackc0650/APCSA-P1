@@ -442,28 +442,35 @@ public void encode(Picture picture) {
 //	System.out.println(messagePixels.length);System.out.println(messagePixels[0].length);
 	for(int row = 2; row < messagePixels.length - 2; row++) {
 		for(int col = 2; col < messagePixels[0].length - 2; col++) {
+			Pixel skipPixel = pixels[row][col + 2];
+			if (skipPixel.getBlue() % 2 == 0 && skipPixel.getBlue() < skipPixel.getRed() && skipPixel.getBlue() < skipPixel.getGreen()) {
+				skipPixel.setBlue(skipPixel.getBlue() - 1);
+			}
+			else if (skipPixel.getGreen() % 2 == 0 && skipPixel.getGreen() < skipPixel.getRed() && skipPixel.getGreen() < skipPixel.getBlue()) {
+				skipPixel.setGreen(skipPixel.getGreen() - 1);
+			}
+			else if (skipPixel.getRed() % 2 == 0 && skipPixel.getRed() < skipPixel.getBlue() && skipPixel.getRed() < skipPixel.getGreen()) {
+				skipPixel.setRed(skipPixel.getRed() - 1);
+			}
 			Pixel messagePixel = messagePixels[row][col];
 			if(messagePixel.colorDistance(Color.BLACK) < 50) {
-				Pixel[] pixelCollection = new Pixel[12];
-				int spread = 0;
-				for (int i = 0; i < pixelCollection.length; i++) {
-					System.out.println(spread);
-					if(i % 4 == 0 && i != 0)
-						spread++;
-					if(i % 4 == 0) {
-						pixelCollection[i] = pixels[row + spread][row + spread];
-					}
-					else if(i % 4 == 1) {
-						pixelCollection[i] = pixels[row + spread][row - spread];
-					}
-					else if(i % 4 == 2) {
-						pixelCollection[i] = pixels[row - spread][row + spread];
-					}
-					else if(i % 4 == 3) {
-						pixelCollection[i] = pixels[row - spread][row - spread];
-					}
+				Pixel[] pixelCollection = new Pixel[16];
+				int index = 0;
+				for (int i = -2; i < 2; i++) {
+					System.out.println(index);
+					pixelCollection[index] = pixels[row][col + i];
+					pixelCollection[index + 4] = pixels[row + i][col];
+					pixelCollection[index + 8] = pixels[row + i][col - i];
+					pixelCollection[index + 12] = pixels[row - i][col + i];
+					index++;
 				}
+				index = 0;
 				for(Pixel pixel : pixelCollection) {
+					if(index % 4 == 0 && index != 0)
+						color++;
+					index++;
+					if(color >= 2)
+						color = -1;
 					switch(color) {
 					case 0:
 						if(pixel.getRed() % 2 == 1) {
@@ -482,6 +489,7 @@ public void encode(Picture picture) {
 						break;
 					}
 				}
+				color = 0;
 				if(color >= 2)
 					color = -1;
 				color++;
@@ -502,27 +510,23 @@ public Picture decode() {
 //			Pixel up = pixels[row - 1][col];
 //			Pixel down = pixels[row + 1][col];
 //			Pixel[] pixelCollection = {right,left,up,down,pixels[row][col + 2],pixels[row][col - 2],pixels[row + 2][col],pixels[row - 2][col],pixels[row - 1][col - 1],pixels[row + 1][col + 1],pixels[row - 1][col + 1],pixels[row + 1][col - 1],pixels[row + 2][col + 2],pixels[row - 2][col - 2],pixels[row + 2][col - 2],pixels[row - 2][col + 2]};
-			Pixel[] pixelCollection = new Pixel[12];
-			int spread = 0;
-			for (int i = 0; i < pixelCollection.length; i++) {
-				System.out.println(spread);
-				if(i % 4 == 0 && i != 0)
-					spread++;
-				if(i % 4 == 0) {
-					pixelCollection[i] = pixels[row + spread][row + spread];
-				}
-				else if(i % 4 == 1) {
-					pixelCollection[i] = pixels[row + spread][row - spread];
-				}
-				else if(i % 4 == 2) {
-					pixelCollection[i] = pixels[row - spread][row + spread];
-				}
-				else if(i % 4 == 3) {
-					pixelCollection[i] = pixels[row - spread][row - spread];
-				}
+			Pixel[] pixelCollection = new Pixel[16];
+			int index = 0;
+			for (int i = -2; i < 2; i++) {
+				pixelCollection[index] = pixels[row][col + i];
+				pixelCollection[index + 4] = pixels[row + i][col];
+				pixelCollection[index + 8] = pixels[row + i][col - i];
+				pixelCollection[index + 12] = pixels[row - i][col + i];
+				index++;
 			}
+			index = 0;
 			boolean similar = true;
 			for(Pixel pixel : pixelCollection) {
+				if(index % 4 == 0 && index != 0)
+					color++;
+				index++;
+				if(color >= 2)
+					color = -1;
 				switch(color) {
 				case 0:
 					if(pixel.getRed() % 2 == 1) {
@@ -540,6 +544,7 @@ public Picture decode() {
 					}
 				}
 			}
+			color = 0;
 			if(similar)
 				messagePixels[row][col].setColor(Color.BLACK);
 			if(color >= 2)
@@ -548,6 +553,63 @@ public Picture decode() {
 		}
 	}
 	return messagePicture;
+}
+public void encodeTest(Picture messagePict)
+{
+Pixel[][] messagePixels = messagePict.getPixels2D();
+Pixel[][] currPixels = this.getPixels2D();
+Pixel currPixel = null;
+Pixel messagePixel = null;
+int count = 0;
+for (int row = 0; row < this.getHeight(); row++)
+{
+for (int col = 0; col < this.getWidth(); col++)
+{
+// if the current pixel red is odd make it even
+currPixel = currPixels[row][col];
+if (currPixel.getRed() % 2 == 1)
+currPixel.setRed(currPixel.getRed() - 1);
+messagePixel = messagePixels[row][col];
+if (messagePixel.colorDistance(Color.BLACK) < 50)
+{
+currPixel.setRed(currPixel.getRed() + 1);
+count++;
+}
+}
+}
+System.out.println(count);
+}
+/**
+* Method to decode a message hidden in the
+* red value of the current picture
+* @return the picture with the hidden message
+*/
+public Picture decodeTest()
+{
+Pixel[][] pixels = this.getPixels2D();
+int height = this.getHeight();
+int width = this.getWidth();
+Pixel currPixel = null;
+
+Pixel messagePixel = null;
+Picture messagePicture = new Picture(height,width);
+Pixel[][] messagePixels = messagePicture.getPixels2D();
+int count = 0;
+for (int row = 0; row < this.getHeight(); row++)
+{
+for (int col = 0; col < this.getWidth(); col++)
+{
+currPixel = pixels[row][col];
+messagePixel = messagePixels[row][col];
+if (currPixel.getRed() % 2 == 1)
+{
+messagePixel.setColor(Color.BLACK);
+count++;
+}
+}
+}
+System.out.println(count);
+return messagePicture;
 }
   
 } // this } is the end of class Picture, put all new methods before this

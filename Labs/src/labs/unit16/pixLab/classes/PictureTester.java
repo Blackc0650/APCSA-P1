@@ -120,10 +120,16 @@ public class PictureTester
 	    canvas.explore();
   }
   public static void testEncodeAndDecode() {
-	  Picture picture = new Picture(getSimplePathFromLead("beach.jpg"));
-	  picture.encode(new Picture(getSimplePathFromLead("text.jpg")));
+	  Picture picture = new Picture(getSimplePathFromLead("seagull.jpg"));
+	  picture.encode(new Picture(getSimplePathFromLead("apple.jpg")));
 	  picture.explore();
 	  picture.decode().explore();
+  }
+  public static void testEncodeAndDecodeTest() {
+	  Picture picture = new Picture(getSimplePathFromLead("beach.jpg"));
+	  picture.encodeTest(new Picture(getSimplePathFromLead("text.jpg")));
+	  picture.explore();
+	  picture.decodeTest().explore();
   }
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -154,6 +160,7 @@ public class PictureTester
    // testEdgeDetection2();
  //     testChromakey();
     testEncodeAndDecode();
+  //  testEncodeAndDecodeTest();
 //    testGetCountRedOverValue(250);
 //    testSetRedToHalfValueInTopHalf();
 //    testClearBlueOverValue(200);
