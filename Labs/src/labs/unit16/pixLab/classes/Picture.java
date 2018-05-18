@@ -430,68 +430,46 @@ public void mirrorGull() {
 	  }
 
 public void encode(Picture picture) {
-	//  b
-	//b c b
-	//  b
-	//
-	//
 	int color = 0;
 	Pixel[][] pixels = this.getPixels2D();
 	Pixel[][] messagePixels = picture.getPixels2D();
-//	System.out.println(pixels.length);System.out.println(pixels[0].length);
-//	System.out.println(messagePixels.length);System.out.println(messagePixels[0].length);
-	//Iterate through all the pixels
 	for(int row = 2; row < messagePixels.length - 2; row++) {
 		for(int col = 2; col < messagePixels[0].length - 2; col++) {
-			//Skip over a pixel for the least value in rgb
 			Pixel skipPixel = pixels[row][col + 2];
-			if (skipPixel.getBlue() % 2 == 0 && skipPixel.getBlue() < skipPixel.getRed() && skipPixel.getBlue() < skipPixel.getGreen()) {
+			if (skipPixel.getBlue() % 2 == 0 && skipPixel.getBlue() < skipPixel.getRed() && skipPixel.getBlue() < skipPixel.getGreen())
 				skipPixel.setBlue(skipPixel.getBlue() - 1);
-			}
-			else if (skipPixel.getGreen() % 2 == 0 && skipPixel.getGreen() < skipPixel.getRed() && skipPixel.getGreen() < skipPixel.getBlue()) {
+			else if (skipPixel.getGreen() % 2 == 0 && skipPixel.getGreen() < skipPixel.getRed() && skipPixel.getGreen() < skipPixel.getBlue())
 				skipPixel.setGreen(skipPixel.getGreen() - 1);
-			}
-			else if (skipPixel.getRed() % 2 == 0 && skipPixel.getRed() < skipPixel.getBlue() && skipPixel.getRed() < skipPixel.getGreen()) {
+			else if (skipPixel.getRed() % 2 == 0 && skipPixel.getRed() < skipPixel.getBlue() && skipPixel.getRed() < skipPixel.getGreen())
 				skipPixel.setRed(skipPixel.getRed() - 1);
-			}
-			//if black
 			Pixel messagePixel = messagePixels[row][col];
 			if(messagePixel.colorDistance(Color.BLACK) < 50) {
-				//load in pixels creating a staggered circle
 				Pixel[] pixelCollection = new Pixel[16];
 				int index = 0;
 				for (int i = -2; i < 2; i++) {
-					pixelCollection[index] = pixels[row][col + i];
-					pixelCollection[index + 4] = pixels[row + i][col];
-					pixelCollection[index + 8] = pixels[row + i][col - i];
-					pixelCollection[index + 12] = pixels[row - i][col + i];
+					pixelCollection[index] = pixels[row][col + i];pixelCollection[index + 4] = pixels[row + i][col];
+					pixelCollection[index + 8] = pixels[row + i][col - i];pixelCollection[index + 12] = pixels[row - i][col + i];
 					index++;
 				}
 				index = 0;
-				//iterate over the pixel collection
 				for(Pixel pixel : pixelCollection) {
-					//every four pixels switch the color
 					if(index % 4 == 0 && index != 0)
 						color++;
 					index++;
 					if(color >= 2)
 						color = -1;
-					//change the r g b values to even accordingly
 					switch(color) {
 					case 0:
-						if(pixel.getRed() % 2 == 1) {
+						if(pixel.getRed() % 2 == 1)
 							pixel.setRed(pixel.getRed() + 1);
-						}
 						break;
 					case 1:
-						if(pixel.getBlue() % 2 == 1) {
+						if(pixel.getBlue() % 2 == 1)
 							pixel.setBlue(pixel.getBlue() + 1);
-						}
 						break;
 					case 2:
-						if(pixel.getGreen() % 2 == 1) {
+						if(pixel.getGreen() % 2 == 1)
 							pixel.setGreen(pixel.getGreen() + 1);
-						}
 						break;
 					}
 				}
@@ -511,18 +489,11 @@ public Picture decode() {
 	Pixel[][] messagePixels = messagePicture.getPixels2D();
 	for(int row = 2; row < messagePixels.length - 2; row++) {
 		for(int col = 2; col < messagePixels[0].length - 2; col++) {
-//			Pixel right = pixels[row][col + 1];
-//			Pixel left = pixels[row][col - 1];
-//			Pixel up = pixels[row - 1][col];
-//			Pixel down = pixels[row + 1][col];
-//			Pixel[] pixelCollection = {right,left,up,down,pixels[row][col + 2],pixels[row][col - 2],pixels[row + 2][col],pixels[row - 2][col],pixels[row - 1][col - 1],pixels[row + 1][col + 1],pixels[row - 1][col + 1],pixels[row + 1][col - 1],pixels[row + 2][col + 2],pixels[row - 2][col - 2],pixels[row + 2][col - 2],pixels[row - 2][col + 2]};
 			Pixel[] pixelCollection = new Pixel[16];
 			int index = 0;
 			for (int i = -2; i < 2; i++) {
-				pixelCollection[index] = pixels[row][col + i];
-				pixelCollection[index + 4] = pixels[row + i][col];
-				pixelCollection[index + 8] = pixels[row + i][col - i];
-				pixelCollection[index + 12] = pixels[row - i][col + i];
+				pixelCollection[index] = pixels[row][col + i];pixelCollection[index + 4] = pixels[row + i][col];
+				pixelCollection[index + 8] = pixels[row + i][col - i];pixelCollection[index + 12] = pixels[row - i][col + i];
 				index++;
 			}
 			index = 0;
@@ -535,19 +506,16 @@ public Picture decode() {
 					color = -1;
 				switch(color) {
 				case 0:
-					if(pixel.getRed() % 2 == 1) {
+					if(pixel.getRed() % 2 == 1)
 						similar = false;
-					}
 					break;
 				case 1:
-					if(pixel.getBlue() % 2 == 1) {
+					if(pixel.getBlue() % 2 == 1)
 						similar = false;
-					}
 					break;
 				case 2:
-					if(pixel.getGreen() % 2 == 1) {
+					if(pixel.getGreen() % 2 == 1)
 						similar = false;
-					}
 				}
 			}
 			color = 0;
@@ -558,37 +526,26 @@ public Picture decode() {
 			color++;
 		}
 	}
-	//clean it up a little bit
 	for(int row = 2; row < messagePixels.length - 2; row++) {
 		for(int col = 2; col < messagePixels[0].length - 2; col++) {
 			Pixel currentPixel = messagePixels[row][col];
-			Pixel right = messagePixels[row][col + 1];
-			Pixel left = messagePixels[row][col - 1];
-			Pixel up = messagePixels[row - 1][col];
-			Pixel down = messagePixels[row + 1][col];
 			if(currentPixel.getColor().getRed() == 0 && currentPixel.getBlue() == 0 && currentPixel.getGreen() == 0) {
 				int sideCount = 0;
-				if(right.getAverage() == 255) {
+				if(messagePixels[row][col + 1].getAverage() == 255)
 					sideCount++;
-				}
-				if(left.getAverage() == 255) {
+				if(messagePixels[row][col - 1].getAverage() == 255)
 					sideCount++;
-				}
-				if(up.getAverage() == 255) {
+				if(messagePixels[row - 1][col].getAverage() == 255)
 					sideCount++;
-				}
-				if(down.getAverage() == 255) {
+				if(messagePixels[row + 1][col].getAverage() == 255)
 					sideCount++;
-				}
 				if(sideCount >= 3) {
 					currentPixel.setColor(Color.WHITE);
 				}
-				
 			}
 		}
 	}
-	return messagePicture;
-}
+	return messagePicture;}
 public void encodeTest(Picture messagePict)
 {
 Pixel[][] messagePixels = messagePict.getPixels2D();
